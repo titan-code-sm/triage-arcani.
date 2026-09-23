@@ -159,6 +159,7 @@ h1,h2,h3, .display{
 /* ---------- field ---------- */
 .field{
   display:flex;
+  flex-wrap: wrap;
   gap: 8px;
   justify-content:center;
   padding: 10px 8px;
@@ -1461,6 +1462,8 @@ footer.credits{
     <div class="turn-indicator" id="turn-indicator">—</div>
   </div>
   <div class="actionbar">
+    <button class="btn-main btn-ghost" id="btn-goto-battle" style="display:none; border-color:var(--red-bright); color:var(--red-bright);">⚔ Vai alla Battle Phase</button>
+    <button class="btn-main btn-ghost" id="btn-goto-main2" style="display:none;">Vai a Main Phase 2</button>
     <button class="btn-main btn-danger" id="btn-end-turn">Fine turno</button>
   </div>
 
@@ -1771,21 +1774,24 @@ footer.credits{
       <h3>Statistiche</h3>
       <p>ATK e DEF di ogni arcano derivano dal suo numero (0&ndash;44): <b>ATK = numero &times; 100</b>, <b>DEF = (44 &minus; numero) &times; 50</b>.</p>
 
-      <h3>Struttura del turno</h3>
+      <h3>Struttura del turno (Regolamento ufficiale v9.0)</h3>
       <ul>
-        <li><b>Pesca</b> — tocca il mazzo per pescare una carta a inizio turno (chi comincia il duello non pesca al suo primissimo turno).</li>
-        <li><b>Turno libero</b> — nello stesso turno puoi: evocare <b>una sola carta</b> su uno slot libero (Attacco o Difesa); cambiare la posizione di un mostro già in campo toccando la sua icona 🔄 (una volta a testa, non lo stesso turno in cui l'hai evocata, non dopo che ha attaccato); e dichiarare battaglia con ognuno dei tuoi mostri in Attacco, una volta ciascuno — nell'ordine che preferisci.</li>
-        <li><b>Fine turno</b> — limite di mano: scarta fino ad averne 6.</li>
+        <li><b>Draw Phase</b> — tocca il mazzo per pescare una carta (chi comincia il duello non pesca al suo primissimo turno).</li>
+        <li><b>Standby Phase</b> — fase automatica; è il momento in cui può scattare un Evento del Destino.</li>
+        <li><b>Main Phase 1</b> — puoi evocare <b>una sola carta</b> (Evocazione Normale o Tributo) su uno dei tuoi 5 slot mostro, cambiare la posizione di un mostro già in campo con 🔄 (una volta a testa, non lo stesso turno in cui l'hai evocata, non dopo che ha attaccato), attivare Supporto o coprire una Trappola.</li>
+        <li><b>Battle Phase</b> — si entra col pulsante "Vai alla Battle Phase" (non disponibile al tuo primissimo turno). Da qui dichiari battaglia con ognuno dei tuoi mostri in Attacco, una volta ciascuno, nell'ordine che preferisci.</li>
+        <li><b>Main Phase 2</b> — dopo la battaglia, puoi ancora evocare (se non l'hai già fatto) o attivare Supporto/Trappole prima di finire il turno.</li>
+        <li><b>End Phase</b> — limite di mano: scarta fino ad averne 6.</li>
       </ul>
 
       <h3>Evocazione Tributo</h3>
-      <p>Come nel gioco originale, i mostri più potenti costano caro: gli arcani con <b>ATK 2500+</b> richiedono di offrire in Tributo 1 tuo mostro in campo; quelli con <b>ATK 3500+</b> ne richiedono 2.</p>
+      <p>Ogni arcano ha un <b>Livello</b> (1&ndash;12, visibile sulla carta): i mostri di <b>Livello 5 o 6</b> richiedono di offrire in Tributo 1 tuo mostro in campo; quelli di <b>Livello 7 o superiore</b> ne richiedono 2 — esattamente come nel regolamento ufficiale.</p>
 
       <h3>Come attaccare</h3>
-      <p>Tocca una tua carta in Attacco (che non abbia già attaccato) per selezionarla, poi tocca la carta avversaria che vuoi colpire — o il pulsante "Attacco diretto" se il campo avversario è vuoto.</p>
+      <p>Durante la Battle Phase, tocca una tua carta in Attacco (che non abbia già attaccato) per selezionarla, poi tocca la carta avversaria che vuoi colpire — o il pulsante "Attacco diretto" se il campo avversario è vuoto.</p>
 
-      <h3>Zona Supporto</h3>
-      <p>Invece di evocarla come mostro, puoi mandare una carta dalla mano nella Zona Supporto per attivare subito il suo effetto: niente ATK/DEF, niente Tributo, va dritta al cimitero dopo. Puoi farlo fino a 2 volte a turno. Solo le carte con un effetto utile da sole (pesca, cura, indebolire il nemico, distruggere il campo...) mostrano questa opzione — quelle il cui effetto ha senso solo restando in campo (es. Gli Amanti, il Führer, L'Inganno) restano evocabili solo come mostri.</p>
+      <h3>Zona Mostri e Zona Supporto/Trappole</h3>
+      <p>Come nel regolamento ufficiale, hai <b>5 slot mostro</b> e <b>5 slot Supporto/Trappole</b>. Durante una tua Main Phase, una carta dalla mano può: attivare subito il suo effetto come Supporto (niente ATK/DEF, niente Tributo, va dritta al cimitero, fino a 2 volte a turno); oppure essere coperta come <b>Trappola</b> — resta nascosta all'avversario (si vede solo il dorso con la ragnatela 🕸) finché non la riveli e attivi tu stesso, in un turno successivo. Solo le carte con un effetto utile da sole (pesca, cura, indebolire il nemico, distruggere il campo...) possono essere usate così — quelle il cui effetto ha senso solo restando in campo (es. Gli Amanti, il Führer, L'Inganno) restano evocabili solo come mostri.</p>
 
       <h3>Battaglia</h3>
       <ul>
@@ -1794,7 +1800,7 @@ footer.credits{
       </ul>
 
       <h3>Semplificazioni rispetto al gioco originale</h3>
-      <p>Per restare fedele al tuo mazzo personalizzato (solo mostri, nessuna Magia/Trappola/Extra Deck) e giocabile comodamente da telefono, questa versione non include: Catene e Priorità (non ci sono carte a cui rispondere), mostri coperti/Set in Difesa (qui sono sempre scoperti), Evocazioni Speciali di tipo Xyz/Synchro/Fusion/Rituale/Pendulum, e la separazione tra Fase Principale 1/Battaglia/Principale 2 (qui evocare, cambiare posizione e attaccare si possono fare liberamente, nell'ordine che preferisci, nello stesso turno).</p>
+      <p>Questa versione segue fedelmente le fasi del turno, le zone del campo, l'Evocazione Tributo per Livello e le regole di battaglia del regolamento ufficiale. Per restare fedele al tuo mazzo personalizzato (solo mostri) e giocabile comodamente da telefono, non include invece: vere Carte Magia, Catene e Priorità (le Trappole si rivelano solo nel tuo turno successivo, non in risposta all'avversario), mostri coperti/Set in Difesa, o Evocazioni Speciali di tipo Xyz/Synchro/Fusion/Rituale/Pendulum ed Extra Deck.</p>
 
       <h3>Modalità di gioco</h3>
       <ul>
@@ -1891,51 +1897,51 @@ const FIREBASE_CONFIG = {
 };
 
 const CARD_DEFS = [
-  {name:'Il Matto', atk:0, def:2200, effect:'matto', rarity:'normale', flavor:'Non ha nulla da perdere, quindi non perde mai il sorriso. O il cane.', scene:'Un campanello suona da nessuna parte. Il Matto fa un inchino a un pubblico che non esiste.'},
-  {name:'Il Mago', atk:100, def:2150, effect:'mago', rarity:'normale', flavor:'Sa tre trucchi. Il quarto è convincerti che ne sa cento.', scene:'Le carte si mescolano da sole. Nessuno ha visto come.'},
-  {name:'La Papessa', atk:200, def:2100, effect:'presagio', rarity:'normale', flavor:'Custodisce segreti che nemmeno lei ricorda più.', scene:'Un libro si apre su una pagina che prima non c\'era.'},
-  {name:'L\'Imperatrice', atk:300, def:2050, effect:'presagio', rarity:'normale', flavor:'Regna su un castello immaginario con polso fermissimo.', scene:'Il trono trema per un istante, poi torna immobile.'},
-  {name:'L\'Imperatore', atk:400, def:2000, effect:'none', rarity:'normale', flavor:'Governa. Punto. Non fate domande.', scene:'Il silenzio cala nella stanza. Nessuno osa parlare per primo.'},
-  {name:'Il Papa', atk:500, def:1950, effect:'presagio', rarity:'normale', flavor:'Benedice tutto, giudica silenziosamente il resto.', scene:'Una campana suona in lontananza, tre volte, poi tace.'},
-  {name:'Gli Amanti', atk:600, def:1900, effect:'union', rarity:'normale', flavor:'Due cuori, un solo voto. Indovina chi lo esprime.', scene:'Due ombre si uniscono in una sola, per un attimo.'},
-  {name:'Il Carro', atk:700, def:1850, effect:'presagio', rarity:'normale', flavor:'Va dritto per la sua strada, anche quando la strada non esiste ancora.', scene:'Le ruote girano da sole, in una direzione che nessuno ha scelto.'},
-  {name:'La Giustizia', atk:800, def:1800, effect:'none', rarity:'normale', flavor:'Pesa tutto sulla bilancia, tranne le proprie colpe.', scene:'La bilancia oscilla, poi si ferma perfettamente in equilibrio.'},
-  {name:'L\'Eremita', atk:900, def:1750, effect:'eremita', rarity:'normale', flavor:'Cammina da solo nella neve perché il wifi in compagnia non prende.', scene:'Una lanterna si accende in fondo al corridoio. Nessuno la tiene in mano.'},
-  {name:'La Ruota', atk:1000, def:1700, effect:'ciclo', rarity:'normale', flavor:'Gira, gira, gira. A volte ti porta su. Spesso no.', scene:'Il pavimento gira sotto i piedi di tutti, per un solo istante.'},
-  {name:'La Forza', atk:1100, def:1650, effect:'presagio', rarity:'normale', flavor:'Doma il leone con un sorriso e zero esitazioni.', scene:'Un ruggito lontano, poi una quiete innaturale.'},
-  {name:'L\'Appeso', atk:1200, def:1600, effect:'none', rarity:'normale', flavor:'Vede il mondo capovolto e giura che così ha più senso.', scene:'Il mondo si capovolge per mezzo secondo. Poi torna com\'era, forse.'},
-  {name:'La Morte', atk:1300, def:1550, effect:'morte', rarity:'epocale', flavor:'Non è la fine. È solo... una fine molto definitiva.', scene:'Le candele si spengono tutte insieme, senza vento.'},
-  {name:'La Temperanza', atk:1400, def:1500, effect:'none', rarity:'normale', flavor:'Mescola gli elementi con calma zen mentre tutti gli altri vanno nel panico.', scene:'Due liquidi si versano l\'uno nell\'altro senza mai mescolarsi davvero.'},
-  {name:'Il Diavolo', atk:1500, def:1450, effect:'diavolo', rarity:'epocale', flavor:'Offre un patto vantaggioso. Le clausole in piccolo sono, per l\'appunto, in piccolo.', scene:'Un profumo di zolfo e di buoni propositi riempie la stanza.'},
-  {name:'La Torre', atk:1600, def:1400, effect:'torre', rarity:'epocale', flavor:'Quando crolla, crolla per tutti. Democraticamente distruttiva.', scene:'Un boato lontano. Qualcosa, da qualche parte, è appena crollato.'},
-  {name:'La Stella', atk:1700, def:1350, effect:'heal400', rarity:'normale', flavor:'Brilla nel buio e non chiede nulla in cambio. Merce rara, in questo mazzo.', scene:'Una singola luce si accende nel buio più totale.'},
-  {name:'La Luna', atk:1800, def:1300, effect:'none', rarity:'normale', flavor:'Illumina appena quel che basta per farti inciampare comunque.', scene:'L\'ombra della luna scivola sul tavolo, anche se non c\'è nessuna finestra.'},
-  {name:'Il Sole', atk:1900, def:1250, effect:'heal400', rarity:'normale', flavor:'Splende su tutti senza preferenze, come un raggio di ottimismo instancabile.', scene:'La stanza si scalda all\'improvviso, come se fosse mezzogiorno.'},
-  {name:'Il Giudizio', atk:2000, def:1200, effect:'ciclo', rarity:'normale', flavor:'Chiama tutti a rapporto. Nessuno risponde volentieri.', scene:'Una tromba suona da lontano, e tutti si voltano insieme.'},
-  {name:'Il Mondo', atk:2100, def:1150, effect:'mondo', rarity:'normale', flavor:'Ha visto tutto, ha fatto tutto, ora si gode il traguardo.', scene:'Un cerchio si chiude. Qualcosa, finalmente, è completo.'},
-  {name:'La Perseveranza', atk:2200, def:1100, effect:'none', rarity:'normale', flavor:'Continua a camminare anche quando la lanterna si è spenta da un pezzo.', scene:'Un passo, poi un altro. La lanterna è vuota da un pezzo, ma nessuno si ferma.'},
-  {name:'Il Pericolo', atk:2300, def:1050, effect:'pericolo', rarity:'normale', flavor:'Non porta la mascherina per moda: il mestiere è letteralmente pericoloso. Chi le sta vicino ne esce indebolito.', scene:'Una nube tossica si allarga silenziosa. Chi la respira sente le braccia farsi più deboli.'},
-  {name:'Il Tempo', atk:2400, def:1000, effect:'none', rarity:'normale', flavor:'Passa comunque, che tu lo passi bene o no.', scene:'Un orologio ticchetta più forte per qualche secondo, poi torna normale.'},
-  {name:'Il Führer', atk:2500, def:950, effect:'fuhrer', rarity:'normale', flavor:'Si è auto-proclamato capo. Da solo. Ma quando parla lui, tacciono tutti.', scene:'Qualcuno si schiarisce la voce e tutti, inspiegabilmente, tacciono.'},
-  {name:'L\'Inganno', atk:2600, def:900, effect:'inganno', rarity:'normale', flavor:'Non è quello che sembra. O forse sì. È un inganno: chi può dirlo davvero.', scene:'Qualcosa si muove nell\'ombra. O forse è solo un\'ombra.'},
-  {name:'La Sapienza', atk:2700, def:850, effect:'sapienza', rarity:'normale', flavor:'Ha letto tutti i libri e li condivide con chiunque, persino con l\'avversario. Il sapere non fa preferenze.', scene:'Le pagine di mille libri sfogliano tutte insieme, da sole, e si aprono anche davanti all\'avversario.'},
-  {name:'Il Seme', atk:2800, def:800, effect:'none', rarity:'normale', flavor:'Piccolo, silenzioso, destinato a diventare un problema molto più grande.', scene:'Qualcosa di piccolissimo cade a terra e nessuno ci fa caso. Ancora per poco.'},
-  {name:'L\'Ascensione', atk:2900, def:750, effect:'union', rarity:'normale', flavor:'Salgono insieme, sperando che nessuno dei due guardi giù.', scene:'Due mani si stringono, in alto, dove nessuno può raggiungerle.'},
-  {name:'Il Vizio', atk:3000, def:700, effect:'ciclo', rarity:'normale', flavor:'Un abbraccio, due colpe, zero rimpianti.', scene:'Un brindisi silenzioso, un sorriso complice, nessun rimorso in vista.'},
-  {name:'La Montagna', atk:3100, def:650, effect:'presagio', rarity:'normale', flavor:'Non si scala da soli. O si può, ma poi te ne penti.', scene:'L\'aria si fa più sottile. La vetta sembra più vicina di quanto sia davvero.'},
-  {name:'L\'Arroganza', atk:4200, def:0, effect:'none', rarity:'normale', flavor:'Tutto attacco, zero difesa. Un ritratto fedele, a pensarci bene.', scene:'Un petto si gonfia d\'orgoglio. Le difese, nel frattempo, restano a casa.'},
-  {name:'La Mano di Dio', atk:3300, def:550, effect:'manodidio', rarity:'normale', flavor:'Tocca, e ciò che era rotto guarisce. O segna un gol irregolare: dipende dai punti di vista.', scene:'Una luce calda tocca ciò che era spezzato. Qualcosa si ricompone.'},
-  {name:'La Fede', atk:3400, def:500, effect:'none', rarity:'normale', flavor:'Crede fermamente in qualcosa che nessun altro può vedere. Rispetto.', scene:'Nessuna prova, nessun dubbio. Solo una certezza tranquilla.'},
-  {name:'La Grazia', atk:3500, def:450, effect:'ciclo', rarity:'normale', flavor:'Danza tra le pagine di una storia che nessun altro saprebbe raccontare così bene.', scene:'Una melodia si alza da nessuno strumento in particolare.'},
-  {name:'La Fortuna', atk:3600, def:400, effect:'fortuna', rarity:'normale', flavor:'A volte basta essere nel posto giusto, vestiti nel modo giusto.', scene:'Una moneta cade, rotola, si ferma dalla parte giusta.'},
-  {name:'Il Cambiamento', atk:3700, def:350, effect:'presagio', rarity:'normale', flavor:'Porta tutto quello che ha, anche se non sa bene dove sta andando.', scene:'I bagagli sono già pronti. La destinazione, ancora no.'},
-  {name:'Il Baratto', atk:3800, def:300, effect:'none', rarity:'normale', flavor:'Ha un piano. Ha sempre un piano. Fidatevi, più o meno.', scene:'Due mani si stringono su un accordo che nessuno ha letto per intero.'},
-  {name:'Il Fuoco', atk:3900, def:250, effect:'none', rarity:'normale', flavor:'Brucia dentro anche quando fuori sembra tutto tranquillo.', scene:'Una scintilla, poi un calore che non si vede ma si sente.'},
-  {name:'Le Passioni', atk:4000, def:200, effect:'passioni', rarity:'normale', flavor:'Corre a testa alta verso qualcosa. Non importa cosa: l\'importante è correre forte.', scene:'Il cuore accelera. Non importa il motivo, importa la corsa.'},
-  {name:'L\'Afrohouse', atk:4100, def:150, effect:'presagio', rarity:'normale', flavor:'Alza il volume finché anche le stelle si mettono a ballare.', scene:'I bassi fanno tremare i bicchieri. Qualcuno, da qualche parte, alza le braccia.'},
-  {name:'La Luna Nera', atk:4200, def:100, effect:'lunanera', rarity:'epocale', flavor:'Quando appare, gli orologi si fermano. I punti vita, un po\' meno.', scene:'La luce sparisce tutta insieme. Per un istante, il mondo trattiene il respiro.'},
-  {name:'La Buona Novella', atk:4300, def:50, effect:'presagio', rarity:'normale', flavor:'Porta notizie che cambiano tutto, puntualmente all\'ultimo momento.', scene:'Una lettera arriva, sigillata, proprio mentre nessuno se lo aspettava più.'},
-  {name:'La Madre', atk:4400, def:0, effect:'madre', rarity:'epocale', flavor:'Protegge tutti, nutre tutti, non chiede mai nulla in cambio. La vera carta più potente del mazzo.', scene:'Le braccia si aprono, calde, prima ancora che qualcuno chieda aiuto.'}
+  {name:'Il Matto', atk:0, level:1, def:2200, effect:'matto', rarity:'normale', flavor:'Non ha nulla da perdere, quindi non perde mai il sorriso. O il cane.', scene:'Un campanello suona da nessuna parte. Il Matto fa un inchino a un pubblico che non esiste.'},
+  {name:'Il Mago', atk:100, level:1, def:2150, effect:'mago', rarity:'normale', flavor:'Sa tre trucchi. Il quarto è convincerti che ne sa cento.', scene:'Le carte si mescolano da sole. Nessuno ha visto come.'},
+  {name:'La Papessa', atk:200, level:1, def:2100, effect:'presagio', rarity:'normale', flavor:'Custodisce segreti che nemmeno lei ricorda più.', scene:'Un libro si apre su una pagina che prima non c\'era.'},
+  {name:'L\'Imperatrice', atk:300, level:1, def:2050, effect:'presagio', rarity:'normale', flavor:'Regna su un castello immaginario con polso fermissimo.', scene:'Il trono trema per un istante, poi torna immobile.'},
+  {name:'L\'Imperatore', atk:400, level:1, def:2000, effect:'none', rarity:'normale', flavor:'Governa. Punto. Non fate domande.', scene:'Il silenzio cala nella stanza. Nessuno osa parlare per primo.'},
+  {name:'Il Papa', atk:500, level:1, def:1950, effect:'presagio', rarity:'normale', flavor:'Benedice tutto, giudica silenziosamente il resto.', scene:'Una campana suona in lontananza, tre volte, poi tace.'},
+  {name:'Gli Amanti', atk:600, level:1, def:1900, effect:'union', rarity:'normale', flavor:'Due cuori, un solo voto. Indovina chi lo esprime.', scene:'Due ombre si uniscono in una sola, per un attimo.'},
+  {name:'Il Carro', atk:700, level:2, def:1850, effect:'presagio', rarity:'normale', flavor:'Va dritto per la sua strada, anche quando la strada non esiste ancora.', scene:'Le ruote girano da sole, in una direzione che nessuno ha scelto.'},
+  {name:'La Giustizia', atk:800, level:2, def:1800, effect:'none', rarity:'normale', flavor:'Pesa tutto sulla bilancia, tranne le proprie colpe.', scene:'La bilancia oscilla, poi si ferma perfettamente in equilibrio.'},
+  {name:'L\'Eremita', atk:900, level:2, def:1750, effect:'eremita', rarity:'normale', flavor:'Cammina da solo nella neve perché il wifi in compagnia non prende.', scene:'Una lanterna si accende in fondo al corridoio. Nessuno la tiene in mano.'},
+  {name:'La Ruota', atk:1000, level:2, def:1700, effect:'ciclo', rarity:'normale', flavor:'Gira, gira, gira. A volte ti porta su. Spesso no.', scene:'Il pavimento gira sotto i piedi di tutti, per un solo istante.'},
+  {name:'La Forza', atk:1100, level:2, def:1650, effect:'presagio', rarity:'normale', flavor:'Doma il leone con un sorriso e zero esitazioni.', scene:'Un ruggito lontano, poi una quiete innaturale.'},
+  {name:'L\'Appeso', atk:1200, level:2, def:1600, effect:'none', rarity:'normale', flavor:'Vede il mondo capovolto e giura che così ha più senso.', scene:'Il mondo si capovolge per mezzo secondo. Poi torna com\'era, forse.'},
+  {name:'La Morte', atk:1300, level:3, def:1550, effect:'morte', rarity:'epocale', flavor:'Non è la fine. È solo... una fine molto definitiva.', scene:'Le candele si spengono tutte insieme, senza vento.'},
+  {name:'La Temperanza', atk:1400, level:3, def:1500, effect:'none', rarity:'normale', flavor:'Mescola gli elementi con calma zen mentre tutti gli altri vanno nel panico.', scene:'Due liquidi si versano l\'uno nell\'altro senza mai mescolarsi davvero.'},
+  {name:'Il Diavolo', atk:1500, level:3, def:1450, effect:'diavolo', rarity:'epocale', flavor:'Offre un patto vantaggioso. Le clausole in piccolo sono, per l\'appunto, in piccolo.', scene:'Un profumo di zolfo e di buoni propositi riempie la stanza.'},
+  {name:'La Torre', atk:1600, level:3, def:1400, effect:'torre', rarity:'epocale', flavor:'Quando crolla, crolla per tutti. Democraticamente distruttiva.', scene:'Un boato lontano. Qualcosa, da qualche parte, è appena crollato.'},
+  {name:'La Stella', atk:1700, level:3, def:1350, effect:'heal400', rarity:'normale', flavor:'Brilla nel buio e non chiede nulla in cambio. Merce rara, in questo mazzo.', scene:'Una singola luce si accende nel buio più totale.'},
+  {name:'La Luna', atk:1800, level:3, def:1300, effect:'none', rarity:'normale', flavor:'Illumina appena quel che basta per farti inciampare comunque.', scene:'L\'ombra della luna scivola sul tavolo, anche se non c\'è nessuna finestra.'},
+  {name:'Il Sole', atk:1900, level:4, def:1250, effect:'heal400', rarity:'normale', flavor:'Splende su tutti senza preferenze, come un raggio di ottimismo instancabile.', scene:'La stanza si scalda all\'improvviso, come se fosse mezzogiorno.'},
+  {name:'Il Giudizio', atk:2000, level:4, def:1200, effect:'ciclo', rarity:'normale', flavor:'Chiama tutti a rapporto. Nessuno risponde volentieri.', scene:'Una tromba suona da lontano, e tutti si voltano insieme.'},
+  {name:'Il Mondo', atk:2100, level:4, def:1150, effect:'mondo', rarity:'normale', flavor:'Ha visto tutto, ha fatto tutto, ora si gode il traguardo.', scene:'Un cerchio si chiude. Qualcosa, finalmente, è completo.'},
+  {name:'La Perseveranza', atk:2200, level:4, def:1100, effect:'none', rarity:'normale', flavor:'Continua a camminare anche quando la lanterna si è spenta da un pezzo.', scene:'Un passo, poi un altro. La lanterna è vuota da un pezzo, ma nessuno si ferma.'},
+  {name:'Il Pericolo', atk:2300, level:4, def:1050, effect:'pericolo', rarity:'normale', flavor:'Non porta la mascherina per moda: il mestiere è letteralmente pericoloso. Chi le sta vicino ne esce indebolito.', scene:'Una nube tossica si allarga silenziosa. Chi la respira sente le braccia farsi più deboli.'},
+  {name:'Il Tempo', atk:2400, level:4, def:1000, effect:'none', rarity:'normale', flavor:'Passa comunque, che tu lo passi bene o no.', scene:'Un orologio ticchetta più forte per qualche secondo, poi torna normale.'},
+  {name:'Il Führer', atk:2500, level:5, def:950, effect:'fuhrer', rarity:'normale', flavor:'Si è auto-proclamato capo. Da solo. Ma quando parla lui, tacciono tutti.', scene:'Qualcuno si schiarisce la voce e tutti, inspiegabilmente, tacciono.'},
+  {name:'L\'Inganno', atk:2600, level:5, def:900, effect:'inganno', rarity:'normale', flavor:'Non è quello che sembra. O forse sì. È un inganno: chi può dirlo davvero.', scene:'Qualcosa si muove nell\'ombra. O forse è solo un\'ombra.'},
+  {name:'La Sapienza', atk:2700, level:5, def:850, effect:'sapienza', rarity:'normale', flavor:'Ha letto tutti i libri e li condivide con chiunque, persino con l\'avversario. Il sapere non fa preferenze.', scene:'Le pagine di mille libri sfogliano tutte insieme, da sole, e si aprono anche davanti all\'avversario.'},
+  {name:'Il Seme', atk:2800, level:5, def:800, effect:'none', rarity:'normale', flavor:'Piccolo, silenzioso, destinato a diventare un problema molto più grande.', scene:'Qualcosa di piccolissimo cade a terra e nessuno ci fa caso. Ancora per poco.'},
+  {name:'L\'Ascensione', atk:2900, level:5, def:750, effect:'union', rarity:'normale', flavor:'Salgono insieme, sperando che nessuno dei due guardi giù.', scene:'Due mani si stringono, in alto, dove nessuno può raggiungerle.'},
+  {name:'Il Vizio', atk:3000, level:6, def:700, effect:'ciclo', rarity:'normale', flavor:'Un abbraccio, due colpe, zero rimpianti.', scene:'Un brindisi silenzioso, un sorriso complice, nessun rimorso in vista.'},
+  {name:'La Montagna', atk:3100, level:6, def:650, effect:'presagio', rarity:'normale', flavor:'Non si scala da soli. O si può, ma poi te ne penti.', scene:'L\'aria si fa più sottile. La vetta sembra più vicina di quanto sia davvero.'},
+  {name:'L\'Arroganza', atk:4200, level:10, def:0, effect:'none', rarity:'normale', flavor:'Tutto attacco, zero difesa. Un ritratto fedele, a pensarci bene.', scene:'Un petto si gonfia d\'orgoglio. Le difese, nel frattempo, restano a casa.'},
+  {name:'La Mano di Dio', atk:3300, level:6, def:550, effect:'manodidio', rarity:'normale', flavor:'Tocca, e ciò che era rotto guarisce. O segna un gol irregolare: dipende dai punti di vista.', scene:'Una luce calda tocca ciò che era spezzato. Qualcosa si ricompone.'},
+  {name:'La Fede', atk:3400, level:6, def:500, effect:'none', rarity:'normale', flavor:'Crede fermamente in qualcosa che nessun altro può vedere. Rispetto.', scene:'Nessuna prova, nessun dubbio. Solo una certezza tranquilla.'},
+  {name:'La Grazia', atk:3500, level:7, def:450, effect:'ciclo', rarity:'normale', flavor:'Danza tra le pagine di una storia che nessun altro saprebbe raccontare così bene.', scene:'Una melodia si alza da nessuno strumento in particolare.'},
+  {name:'La Fortuna', atk:3600, level:7, def:400, effect:'fortuna', rarity:'normale', flavor:'A volte basta essere nel posto giusto, vestiti nel modo giusto.', scene:'Una moneta cade, rotola, si ferma dalla parte giusta.'},
+  {name:'Il Cambiamento', atk:3700, level:8, def:350, effect:'presagio', rarity:'normale', flavor:'Porta tutto quello che ha, anche se non sa bene dove sta andando.', scene:'I bagagli sono già pronti. La destinazione, ancora no.'},
+  {name:'Il Baratto', atk:3800, level:8, def:300, effect:'none', rarity:'normale', flavor:'Ha un piano. Ha sempre un piano. Fidatevi, più o meno.', scene:'Due mani si stringono su un accordo che nessuno ha letto per intero.'},
+  {name:'Il Fuoco', atk:3900, level:9, def:250, effect:'none', rarity:'normale', flavor:'Brucia dentro anche quando fuori sembra tutto tranquillo.', scene:'Una scintilla, poi un calore che non si vede ma si sente.'},
+  {name:'Le Passioni', atk:4000, level:9, def:200, effect:'passioni', rarity:'normale', flavor:'Corre a testa alta verso qualcosa. Non importa cosa: l\'importante è correre forte.', scene:'Il cuore accelera. Non importa il motivo, importa la corsa.'},
+  {name:'L\'Afrohouse', atk:4100, level:10, def:150, effect:'presagio', rarity:'normale', flavor:'Alza il volume finché anche le stelle si mettono a ballare.', scene:'I bassi fanno tremare i bicchieri. Qualcuno, da qualche parte, alza le braccia.'},
+  {name:'La Luna Nera', atk:4200, level:11, def:100, effect:'lunanera', rarity:'epocale', flavor:'Quando appare, gli orologi si fermano. I punti vita, un po\' meno.', scene:'La luce sparisce tutta insieme. Per un istante, il mondo trattiene il respiro.'},
+  {name:'La Buona Novella', atk:4300, level:11, def:50, effect:'presagio', rarity:'normale', flavor:'Porta notizie che cambiano tutto, puntualmente all\'ultimo momento.', scene:'Una lettera arriva, sigillata, proprio mentre nessuno se lo aspettava più.'},
+  {name:'La Madre', atk:4400, level:12, def:0, effect:'madre', rarity:'epocale', flavor:'Protegge tutti, nutre tutti, non chiede mai nulla in cambio. La vera carta più potente del mazzo.', scene:'Le braccia si aprono, calde, prima ancora che qualcuno chieda aiuto.'}
 ];
 
 const CARD_IMAGES = {
@@ -2219,13 +2225,13 @@ function newGame(mode, opts){
     botDifficulty: opts.botDifficulty || 'normal',
     isDaily: !!opts.isDaily,
     players: [
-      { name:opts.name1||'Giocatore 1', lp:8000, hand:[], field:[null,null,null], traps:[null,null] },
-      { name:opts.name2||'Giocatore 2', lp:8000, hand:[], field:[null,null,null], traps:[null,null] }
+      { name:opts.name1||'Giocatore 1', lp:8000, hand:[], field:[null,null,null,null,null], traps:[null,null,null,null,null] },
+      { name:opts.name2||'Giocatore 2', lp:8000, hand:[], field:[null,null,null,null,null], traps:[null,null,null,null,null] }
     ],
     deck: shuffledDeck(opts.seed),
     current: 0,
     turnCount: 1,
-    phase: 'action',
+    phase: 'main1',
     summonedThisTurn: false,
     supportUsedThisTurn: 0,
     lastAction: null,
@@ -2239,13 +2245,41 @@ function newGame(mode, opts){
   log('Il duello ha inizio (8000 LP a testa). Il giocatore che comincia non pesca al suo primissimo turno.');
 }
 
-/* Yu-Gi-Oh-style tribute cost: how many of your own monsters
-   must be sacrificed to Normal Summon a given card. */
+/* Regola ufficiale (Regolamento v9.0, "Evocare le Carte Mostro"):
+   Livello 5 o 6 = 1 Tributo, Livello 7 o più = 2 Tributi. */
 function tributeCostFor(idx){
-  const atk = CARD_DEFS[idx].atk;
-  if(atk>=3500) return 2;
-  if(atk>=2500) return 1;
+  const level = CARD_DEFS[idx].level;
+  if(level>=7) return 2;
+  if(level>=5) return 1;
   return 0;
+}
+
+/* ===================== STRUTTURA DEL TURNO (Regolamento v9.0) ===================== */
+/* Pesca -> Standby -> Main Phase 1 -> Battle Phase -> Main Phase 2 -> End Phase.
+   La Standby Phase non ha azioni proprie in questo gioco (nessuna carta la
+   nomina), quindi viene attraversata automaticamente subito dopo la pescata
+   (ed è il momento in cui scatta un eventuale Evento del Destino). */
+function isMainPhase(){
+  return !!state && (state.phase==='main1' || state.phase==='main2');
+}
+
+function canEnterBattlePhase(){
+  return !!state && !state.over && state.phase==='main1' && state.turnCount>1;
+}
+
+function goToBattlePhase(){
+  if(!canEnterBattlePhase()) return false;
+  state.phase = 'battle';
+  log('--- Battle Phase ---');
+  return true;
+}
+
+function goToMainPhase2(){
+  if(!state || state.phase!=='battle') return false;
+  state.phase = 'main2';
+  selectedFieldSlot = null;
+  log('--- Main Phase 2 ---');
+  return true;
 }
 
 /* Effects meaningful as a standalone "support" activation (card goes to the
@@ -2263,7 +2297,7 @@ function activateSupport(handIdx){
   const p = state.players[state.current];
   const card = p.hand[handIdx];
   if(!card) return false;
-  if(state.phase!=='action') return false;
+  if(!isMainPhase()) return false;
   if(state.supportUsedThisTurn>=2) return false;
   if(!isSupportable(card.idx)) return false;
   const def = CARD_DEFS[card.idx];
@@ -2289,10 +2323,10 @@ function setTrap(handIdx, trapSlot){
   const p = state.players[state.current];
   const card = p.hand[handIdx];
   if(!card) return false;
-  if(state.phase!=='action') return false;
+  if(!isMainPhase()) return false;
   if(state.supportUsedThisTurn>=2) return false;
   if(!isSupportable(card.idx)) return false;
-  if(trapSlot<0 || trapSlot>1 || p.traps[trapSlot]) return false;
+  if(trapSlot<0 || trapSlot>4 || p.traps[trapSlot]) return false;
   p.hand.splice(handIdx,1);
   state.supportUsedThisTurn++;
   p.traps[trapSlot] = { idx:card.idx, uid:card.uid, setTurn:state.turnCount };
@@ -2304,7 +2338,7 @@ function setTrap(handIdx, trapSlot){
 
 function canActivateTrap(ownerIdx, trapSlot){
   if(ownerIdx!==state.current) return false;
-  if(state.phase!=='action') return false;
+  if(!isMainPhase()) return false;
   const trap = state.players[ownerIdx].traps[trapSlot];
   if(!trap) return false;
   return trap.setTurn < state.turnCount;
@@ -2579,7 +2613,7 @@ function playToField(handIdx, slot, position, tributeSlots){
   const p = state.players[state.current];
   const card = p.hand[handIdx];
   if(!card || p.field[slot]!==null || state.summonedThisTurn) return false;
-  if(state.phase!=='action') return false;
+  if(!isMainPhase()) return false;
   const needed = tributeCostFor(card.idx);
   tributeSlots = tributeSlots || [];
   if(tributeSlots.length !== needed) return false;
@@ -2612,7 +2646,7 @@ function changePosition(slot){
   const p = state.players[state.current];
   const card = p.field[slot];
   if(!card) return false;
-  if(state.phase!=='action') return false;
+  if(!isMainPhase()) return false;
   if(card.summonedTurn === state.turnCount) return false;
   if(card.attacked) return false;
   const key = state.current + '_' + slot + '_' + state.turnCount;
@@ -2624,7 +2658,7 @@ function changePosition(slot){
 }
 
 function resolveBattle(attackerSlot, targetSlot){
-  if(state.phase!=='action') return;
+  if(state.phase!=='battle') return;
   const atkIdx = state.current, defIdx = 1-state.current;
   const attackerP = state.players[atkIdx], defenderP = state.players[defIdx];
   const attacker = attackerP.field[attackerSlot];
@@ -2738,7 +2772,6 @@ function endTurnCore(){
 
 function afterChangeover(){
   log('--- Turno ' + state.turnCount + ': tocca a ' + state.players[state.current].name + ' ---');
-  maybeFateEvent();
 }
 
 /* ===================== EVENTI DEL DESTINO ===================== */
@@ -2835,8 +2868,8 @@ function applyFate(key){
   }
 }
 
-/* Draws the turn's card. Called by tapping the deck pile (human), or
-   automatically by the bot. Transitions Draw Phase -> Main Phase 1. */
+/* Draws the turn's card, then attraversa la Standby Phase (dove scatta un
+   eventuale Evento del Destino) prima di entrare in Main Phase 1. */
 function performDraw(){
   if(!state || state.over || state.phase!=='draw') return false;
   const ok = drawCard(state.current);
@@ -2845,7 +2878,11 @@ function performDraw(){
     pushFx({type:'draw', owner:state.current});
     soundDrawSafe();
   }
-  state.phase = 'action';
+  log('--- Standby Phase ---');
+  maybeFateEvent();
+  if(state.over) return true;
+  state.phase = 'main1';
+  log('--- Main Phase 1 ---');
   return true;
 }
 function soundDrawSafe(){ try{ soundDraw(); }catch(e){ /* sound module not loaded yet */ } }
@@ -2856,7 +2893,8 @@ function soundPhaseSafe(){ try{ soundPhase(); }catch(e){ /* ignore */ } }
 async function endTurn(){
   if(state.over || uiLocked) return;
   if(state.mode==='online' && !isMyOnlineTurn()) return;
-  if(state.phase!=='action') return;
+  if(!isMainPhase()) return;
+  log('--- End Phase ---');
   endTurnCore();
 
   if(state.mode==='hotseat'){
@@ -2958,7 +2996,8 @@ async function botPlay(){
   }
 
   // --- battle: attack with eligible monsters ---
-  if(!state.over){
+  if(!state.over && canEnterBattlePhase()){
+    goToBattlePhase();
     renderAll();
     if(state.mode==='online') pushOnlineState();
     await sleep(500);
@@ -3000,6 +3039,7 @@ async function botPlay(){
         await sleep(750);
       }
     }
+    if(!state.over && state.phase==='battle') goToMainPhase2();
   }
 
   uiLocked = false;
@@ -3018,8 +3058,8 @@ let realState = null;
 function realNewSession(name1, name2){
   realState = {
     players: [
-      { name:name1||'Giocatore 1', lp:8000, field:[null,null,null] },
-      { name:name2||'Giocatore 2', lp:8000, field:[null,null,null] }
+      { name:name1||'Giocatore 1', lp:8000, field:[null,null,null,null,null] },
+      { name:name2||'Giocatore 2', lp:8000, field:[null,null,null,null,null] }
     ],
     turnCount:1,
     log: [],
@@ -4007,7 +4047,7 @@ let dragState = null;
 function wireDragDrop(){
   document.addEventListener('pointerdown', e=>{
     if(!state || uiLocked || (state.mode==='online' && !isMyOnlineTurn())) return;
-    if(state.phase!=='action' || state.summonedThisTurn) return;
+    if(!isMainPhase() || state.summonedThisTurn) return;
     const cardEl = e.target.closest('#hand [data-role="hand-card"]');
     if(!cardEl || e.target.closest('.card__info-btn')) return;
     dragState = { handIdx: parseInt(cardEl.getAttribute('data-hand'),10), startX:e.clientX, startY:e.clientY, ghostEl:null, active:false };
@@ -4098,7 +4138,7 @@ function openCardZoom(idx){
   const def = CARD_DEFS[idx];
   document.getElementById('card-zoom-img').src = imgSrc(idx);
   document.getElementById('card-zoom-name').textContent = def.name;
-  document.getElementById('card-zoom-stats').textContent = def.atk + ' / ' + def.def;
+  document.getElementById('card-zoom-stats').textContent = '★'.repeat(Math.min(def.level,12)) + '  ATK ' + def.atk + ' / DEF ' + def.def;
   const rarityEl = document.getElementById('card-zoom-rarity');
   if(def.rarity==='epocale'){ rarityEl.style.display='inline-block'; } else { rarityEl.style.display='none'; }
   const fx = def.effect!=='none' ? EFFECT_INFO[def.effect] : null;
@@ -4463,7 +4503,8 @@ function renderAll(){
 
   document.getElementById('p-top-name').textContent = P[opp].name;
   document.getElementById('p-bottom-name').textContent = P[me].name;
-  document.getElementById('turn-indicator').textContent = (state.phase==='draw' ? 'Turno ' + state.turnCount + ' · Pesca · ' : 'Turno ' + state.turnCount + ' · ') + P[state.current].name;
+  const PHASE_LABELS = {draw:'Draw Phase', main1:'Main Phase 1', battle:'Battle Phase', main2:'Main Phase 2'};
+  document.getElementById('turn-indicator').textContent = 'Turno ' + state.turnCount + ' · ' + (PHASE_LABELS[state.phase] || '') + ' · ' + P[state.current].name;
   document.getElementById('deck-count').textContent = state.deck.length;
   const deckPile = document.getElementById('deck-pile');
   const canDraw = myTurn && state.phase==='draw';
@@ -4473,7 +4514,7 @@ function renderAll(){
   setLP('bottom', P[me].lp);
 
   const attackMode = selectedFieldSlot!==null;
-  const canAct = state.phase==='action';
+  const canAct = isMainPhase();
 
   // tribute bookkeeping for the currently selected hand card, if any
   let pendingTributeNeeded = 0;
@@ -4554,6 +4595,12 @@ function renderAll(){
   endBtn.disabled = !canEndTurn;
   endBtn.style.opacity = canEndTurn ? '1' : '0.45';
   endBtn.style.display = isSpectator ? 'none' : 'inline-block';
+
+  const gotoBattleBtn = document.getElementById('btn-goto-battle');
+  gotoBattleBtn.style.display = (!isSpectator && myTurn && canEnterBattlePhase()) ? 'inline-block' : 'none';
+
+  const gotoMain2Btn = document.getElementById('btn-goto-main2');
+  gotoMain2Btn.style.display = (!isSpectator && myTurn && state.phase==='battle' && !attackMode) ? 'inline-block' : 'none';
 
   const tributeHint = document.getElementById('tribute-hint');
   if(tributeSelecting){
@@ -4789,7 +4836,7 @@ let realAttackPick = null; // {ownerIdx, slot} of chosen attacker
 function wireEvents(){
   document.getElementById('hand').addEventListener('click', e=>{
     if(uiLocked || (state.mode==='online' && !isMyOnlineTurn())) return;
-    if(state.phase!=='action') return;
+    if(!isMainPhase()) return;
     const el = e.target.closest('[data-role="hand-card"]');
     if(!el || state.summonedThisTurn) return;
     const idx = parseInt(el.getAttribute('data-hand'),10);
@@ -4846,6 +4893,10 @@ function wireEvents(){
 
     const card = state.players[state.current].field[slot];
     if(!card) return;
+    if(state.phase!=='battle'){
+      flashHint('Puoi dichiarare attacchi solo durante la Battle Phase.');
+      return;
+    }
     if(card.position==='atk' && !card.attacked){
       selectedFieldSlot = (selectedFieldSlot===slot) ? null : slot;
       selectedHandIndex = null;
@@ -4924,6 +4975,18 @@ function wireEvents(){
   document.getElementById('btn-cancel-attack').addEventListener('click', ()=>{
     selectedFieldSlot = null;
     renderAll();
+  });
+
+  document.getElementById('btn-goto-battle').addEventListener('click', ()=>{
+    if(uiLocked || (state.mode==='online' && !isMyOnlineTurn())) return;
+    const ok = goToBattlePhase();
+    if(ok){ renderAll(); if(state.mode==='online') pushOnlineState(); }
+  });
+
+  document.getElementById('btn-goto-main2').addEventListener('click', ()=>{
+    if(uiLocked || (state.mode==='online' && !isMyOnlineTurn())) return;
+    const ok = goToMainPhase2();
+    if(ok){ renderAll(); if(state.mode==='online') pushOnlineState(); }
   });
 
   document.getElementById('btn-end-turn').addEventListener('click', ()=>{
