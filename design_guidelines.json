@@ -1,0 +1,144 @@
+{
+  "app_name": "Il Triage degli Arcani",
+  "personality": "7 Dark-First Utility (with 6 Glass / Luxe ritual overlays and gothic occult styling)",
+  "personality_one_liner": "Un duello di tarocchi satirici dark e drammatico in stile Yu-Gi-Oh, dove ogni arcano evoca l'abisso con 8000 LP e tributi sacrileghi.",
+  "color": {
+    "surface": "#0A0B0E",
+    "onSurface": "#F4F1EA",
+    "surfaceSecondary": "#14161C",
+    "onSurfaceSecondary": "#E2DDD5",
+    "surfaceTertiary": "#1F232D",
+    "onSurfaceTertiary": "#B8B3A8",
+    "surfaceInverse": "#F4F1EA",
+    "onSurfaceInverse": "#0A0B0E",
+    "brand": "#8B1E1E",
+    "brandPrimary": "#A82424",
+    "onBrandPrimary": "#FFF5F5",
+    "brandSecondary": "#D4AF37",
+    "onBrandSecondary": "#14161C",
+    "brandTertiary": "#2D1515",
+    "onBrandTertiary": "#E2DDD5",
+    "success": "#1E6B39",
+    "onSuccess": "#E2DDD5",
+    "warning": "#B87A1E",
+    "onWarning": "#14161C",
+    "error": "#A82424",
+    "onError": "#FFF5F5",
+    "info": "#2E5A88",
+    "onInfo": "#E2DDD5",
+    "border": "#2D323E",
+    "borderStrong": "#A82424",
+    "divider": "#1A1D26",
+    "muted": "#8A857B",
+    "onBrand": "#FFF5F5"
+  },
+  "typography": {
+    "displayFontFamily": "Cinzel",
+    "textFontFamily": "Plus Jakarta Sans",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24
+    }
+  },
+  "spacing": {
+    "rule": "Generous tactical spacing for duel mat layout with precise touch zones",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 6,
+    "md": 12,
+    "lg": 20,
+    "pill": 999
+  },
+  "shadow_tier": "2",
+  "navigation": "bottom_tabs",
+  "icon_set": "MaterialCommunityIcons",
+  "glassmorphism": {
+    "enabled": true,
+    "do's": [
+      "Use frosted glass panels over the duel mat for graveyard and spell zones",
+      "Apply cinematic glass overlays on card inspection modals"
+    ],
+    "dont's": [
+      "Never blur active LP counters or critical combat numbers",
+      "Do not use heavy blur on text-heavy duel logs"
+    ]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "expo-glass-effect",
+      "android": "expo-blur",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler"
+  },
+  "screens": [
+    {
+      "name": "Home",
+      "purpose": "Occult main menu with game modes, quick duel initiation, and satirical tarot lore.",
+      "states": {
+        "loading": "Caricamento degli Arcani oscuri...",
+        "empty": "Nessun mazzo trovato. Crea il tuo primo mazzo satirico.",
+        "error": "Errore nel caricamento del grimorio. Riprova."
+      },
+      "layout": "Vertical scroll with mystical header banner, active LP status badge, primary 'Inizia Duello' ritual button, difficulty selector chips (Facile, Normale, Incubo), and bottom navigation."
+    },
+    {
+      "name": "Duello",
+      "purpose": "The heart of the app: Yu-Gi-Oh style 3D duel arena with 8000 LP, tribute summons, attack/defense positions, support zones, and cinematic combat.",
+      "states": {
+        "loading": "Evocazione del campo di battaglia...",
+        "empty": "Nessuna carta in mano. Pesca dal mazzo degli arcani.",
+        "error": "Interferenza astrale nel duello. Riconnetti."
+      },
+      "layout": "Full-screen vertical duel mat: Opponent LP & hand at top, opponent monster/support zones, central combat arena with attack/defense indicators, player monster/support zones, player hand cards with drag/press actions, and bottom sticky action drawer (End Phase, Attack Declaration, Tribute Summon)."
+    },
+    {
+      "name": "Galleria",
+      "purpose": "Tarot card collection catalog with satirical artwork, lore descriptions, and deck management.",
+      "states": {
+        "loading": "Sfogliare il grimorio delle 45 carte...",
+        "empty": "Collezione vuota. Sblocca le carte vincendo i duelli.",
+        "error": "Impossibile caricare le carte. Riprova."
+      },
+      "layout": "Grid view (2 columns) with category filters (Arcani Maggiori, Satirici, Supporto), card preview thumbnails with metallic borders, and detail inspection modal."
+    },
+    {
+      "name": "Storico",
+      "purpose": "Match history, win/loss statistics, and dueling records against AI difficulties.",
+      "states": {
+        "loading": "Consultando i registri del tribunale arcano...",
+        "empty": "Nessun duello registrato. Scendi nell'arena per iniziare la leggenda.",
+        "error": "Errore nei registri. Riprova."
+      },
+      "layout": "Header stat cards (Vittorie, Sconfitte, Winrate), followed by chronological list of duel match records with opponent difficulty badge, outcome indicator, and final LP difference."
+    }
+  ],
+  "images": {
+    "tarot_banner": {
+      "url": "https://images.pexels.com/photos/20094721/pexels-photo-20094721.jpeg",
+      "dark": "https://images.pexels.com/photos/20094721/pexels-photo-20094721.jpeg",
+      "alt": "Dark occult tarot dueling aesthetic background"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Ensure all text is in fluent Italian as requested.",
+    "Implement full Yu-Gi-Oh duel mechanics: 8000 LP bars, Attack/Defense position switches, Tribute Summons (1 tribute for 5-6 stars, 2 for 7+), Support zone with 2 activations per turn, and AI opponent with 3 difficulties (Novizio, Adepto, Incubo).",
+    "Maintain the dark occult gothic atmosphere using deep obsidian (#0A0B0E), crimson brand accents (#A82424), and antique gold highlights (#D4AF37).",
+    "Strictly follow typography rules: max font weight 500, Cinzel for display headers and Plus Jakarta Sans for body text.",
+    "Ensure touch targets are >= 44x44pt and all screens include robust loading, empty, and error states."
+  ]
+}

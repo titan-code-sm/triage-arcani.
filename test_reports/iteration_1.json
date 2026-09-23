@@ -1,0 +1,37 @@
+{
+  "summary": "Backend: 9/11 pytest tests pass. Two failures share a single root cause: POST /api/duels and GET /api/duels/{device_id} leak MongoDB '_id' and DO NOT expose 'id' as required by the contract. Cards catalogue (45 items), card images (0/44 -> 200 JPEG, 99 -> 404), stats aggregation with mixed results, and validation all pass. Frontend (Expo web preview at 375x667): Arena, Galleria, Storico, and full Duello flow (hand tap -> bottom sheet with sheet-summon-atk/def/support/view -> summon -> field-card-0-0 appears -> end-turn -> bot plays -> deck-pile draw -> sheet-attack -> targeting/direct attack) all functional. All required testIDs are present. Card-of-day modal opens and closes correctly, galleria filters work (all=45 [40 rendered via virtualization], epocale=10), storico shows stats/empty state.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "POST /api/duels & GET /api/duels/{device_id}",
+        "issue": "Response body contains '_id' (Mongo ObjectId) instead of 'id'. Root cause: DuelRecord (BaseDocument) has `id: Optional[PyObjectId] = Field(default=None, alias='_id')` and FastAPI's `response_model_by_alias` defaults to True, so the alias '_id' is emitted. The problem statement explicitly requires the record to be returned with 'id' and 'created_at'. Frontend does not consume 'id' today, but this is a contract violation and blocks any future usage (e.g. delete/patch by id).",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Duel", "issues": ["Console warning: 'shadow*' style props deprecated on web (cosmetic, use boxShadow via Platform.select if targeting web)", "Console warning: props.pointerEvents deprecated, use style.pointerEvents (React Native 0.74+)"]}
+    ],
+    "react_native_issues": []
+  },
+  "test_report_links": ["/app/backend/tests/backend_test.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [
+    "Fix the id/_id serialization in /app/backend/server.py so POST /api/duels and GET /api/duels/{device_id} return 'id' (not '_id'). Simplest fix: use a dedicated response model without the '_id' alias, OR override with `response_model_by_alias=False` on both endpoints, OR change BaseDocument to expose `id` as a plain str field (converting from _id in from_mongo, and stripping _id in the response). Verify the fix by re-running /app/backend/tests/backend_test.py — tests test_create_duel_returns_record and test_list_duels_after_multiple_posts should then pass.",
+    "(Optional cosmetic) Migrate deprecated web style/props warnings: replace `shadow*` with `boxShadow` on web and `props.pointerEvents` with `style.pointerEvents` where they surface (mostly in reanimated/absolute-fill overlays in duel.tsx)."
+  ],
+  "critical_code_review_comments": [
+    "server.py DuelRecord: aliasing 'id' to '_id' plus FastAPI's default response_model_by_alias=True causes MongoDB internal id to leak in every response. Prefer keeping the DB shape internal and returning a clean API shape.",
+    "duel.tsx is ~900 lines and mixes engine glue, FX, sheet rendering, gameover flow, and CoinSpin. Splitting into DuelHeader, DuelHand, DuelActionBar, DuelSheet, DuelOverlays would help maintainability, but not blocking."
+  ],
+  "updated_files": ["/app/backend/tests/backend_test.py", "/app/backend/tests/__init__.py"],
+  "success_rate": {"backend": "82% (9/11)", "frontend": "100% of flows exercised"},
+  "seed_data_creation": "Each test run creates fresh duel records under a random device_id prefixed TEST_ (no cleanup needed since queries are per-device).",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "After fixing the id serialization, only /app/backend/tests/backend_test.py needs to be re-run. Frontend flows verified end-to-end: Arena -> start-duel-button (with difficulty-chip-easy selected) -> Duello -> hand-card-0 -> sheet-summon-atk -> field-card-0-0 -> end-turn-button -> bot plays -> deck-pile draw -> field-card-0-0 tap -> sheet-attack. Direct-attack path works only when opponent has no monsters; in easy mode the bot summoned on turn 2, so we hit the targeting branch — that's expected engine behaviour.",
+  "rca_of_issue": "Bug: response includes '_id' instead of 'id'. Repro: POST /api/duels with a valid body -> inspect JSON. Cause: BaseDocument declares `id: Optional[PyObjectId] = Field(default=None, alias='_id')` and FastAPI serializes response models with by_alias=True by default. Mitigation: (a) add `response_model_by_alias=False` to the @api_router.post/get decorators, or (b) define a `DuelRecordOut` model with a plain `id: Optional[str] = None` and no alias, or (c) drop the alias and manage `_id` <-> `id` conversion manually inside `from_mongo`/`to_mongo` (already partially done)."
+}
