@@ -119,14 +119,14 @@ h1,h2,h3, .display{
 }
 .player-row__name{
   font-family:'Cinzel', serif;
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   color: var(--gold-bright);
   white-space:nowrap;
   min-width: 78px;
 }
 .lp-track{
   flex:1;
-  height: 12px;
+  height: 14px;
   background: #000;
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -142,13 +142,13 @@ h1,h2,h3, .display{
 .lp-fill.lp-low{ background: linear-gradient(90deg, #6b1a1a, var(--red-bright)); }
 .lp-value{
   font-family:'Cinzel', serif;
-  font-size: 0.78rem;
+  font-size: 0.92rem;
   color: var(--parchment);
   min-width: 42px;
   text-align:right;
 }
 .hand-count{
-  font-size:0.68rem;
+  font-size:0.78rem;
   color: var(--parchment-dim);
   font-style: italic;
   padding-left: 86px;
@@ -158,9 +158,16 @@ h1,h2,h3, .display{
 /* ---------- field ---------- */
 .field{
   display:flex;
-  gap: 6px;
+  gap: 8px;
   justify-content:center;
-  padding: 6px 0;
+  padding: 10px 8px;
+  border-radius: 12px;
+  background:
+    repeating-linear-gradient(100deg, rgba(0,0,0,0.10) 0px, rgba(0,0,0,0.10) 2px, transparent 2px, transparent 26px),
+    repeating-linear-gradient(10deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 18px),
+    linear-gradient(180deg, #3d2b18, #241708);
+  border: 1px solid #170f07;
+  box-shadow: inset 0 3px 12px rgba(0,0,0,0.55), inset 0 -2px 6px rgba(0,0,0,0.35);
 }
 .slot{
   width: 31%;
@@ -183,11 +190,12 @@ h1,h2,h3, .display{
 
 .card{
   width: 31%;
+  position: relative;
   cursor:pointer;
   user-select:none;
   transition: transform 0.15s ease;
 }
-.card--small{ width: 78px; flex: 0 0 auto; }
+.card--small{ width: 92px; flex: 0 0 auto; }
 .card__frame{
   position:relative;
   aspect-ratio: 5/8;
@@ -195,24 +203,26 @@ h1,h2,h3, .display{
   overflow:hidden;
   border: 1.5px solid var(--gold);
   background:#000;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.55), 0 2px 2px rgba(0,0,0,0.4);
 }
 .card__art{ width:100%; height:100%; object-fit:cover; display:block; }
 .card__stats{
   position:absolute; left:0; right:0; bottom:0;
   display:flex; justify-content:center; gap:4px;
   background: linear-gradient(0deg, rgba(0,0,0,0.88), transparent);
-  padding: 8px 2px 3px;
+  padding: 9px 2px 3px;
   font-family:'Cinzel', serif;
-  font-size: 0.62rem;
+  font-size: 0.76rem;
+  font-weight: 700;
   color: var(--parchment);
 }
-.card--small .card__stats{ font-size:0.56rem; }
+.card--small .card__stats{ font-size:0.78rem; }
 .card__stats .atk{ color: var(--red-bright); }
 .card__stats .def{ color: var(--teal-bright); }
 .card__pos{
   position:absolute; top:3px; left:3px;
   font-family:'Cinzel', serif;
-  font-size: 0.5rem;
+  font-size: 0.58rem;
   padding: 1px 5px;
   border-radius: 3px;
   background: rgba(0,0,0,0.6);
@@ -225,11 +235,34 @@ h1,h2,h3, .display{
   font-size:0.75rem;
   text-shadow: 0 0 4px #000;
 }
+.card__tribute-mark{
+  position:absolute; top:3px; left:3px;
+  font-family:'Cinzel', serif;
+  font-size: 0.56rem;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(122,32,32,0.85);
+  color: var(--parchment);
+  z-index: 2;
+}
+.card__reposition-btn{
+  position:absolute; bottom:24px; right:3px;
+  width:22px; height:22px;
+  border-radius:50%;
+  border: 1px solid var(--gold);
+  background: rgba(20,15,10,0.82);
+  color: var(--gold-bright);
+  font-size: 0.72rem;
+  line-height:1;
+  display:flex; align-items:center; justify-content:center;
+  z-index: 3;
+  cursor:pointer;
+}
 .card__name{
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   text-align:center;
   color: var(--parchment-dim);
-  margin-top: 2px;
+  margin-top: 3px;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -256,14 +289,14 @@ h1,h2,h3, .display{
 }
 .deck-badge{
   font-family:'Cinzel', serif;
-  font-size:0.7rem;
+  font-size:0.78rem;
   color: var(--parchment-dim);
   text-align:center;
 }
-.deck-badge b{ display:block; color: var(--gold-bright); font-size:1.05rem; }
+.deck-badge b{ display:block; color: var(--gold-bright); font-size:1.15rem; }
 .turn-indicator{
   font-family:'Cinzel', serif;
-  font-size: 0.72rem;
+  font-size: 0.84rem;
   color: var(--gold-bright);
   text-align:center;
   flex:1;
@@ -273,7 +306,7 @@ h1,h2,h3, .display{
   border: 1px solid var(--gold);
   color: var(--gold-bright);
   font-family:'Cinzel', serif;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   padding: 9px 14px;
   border-radius: 6px;
   cursor:pointer;
@@ -294,7 +327,7 @@ h1,h2,h3, .display{
 
 .hint{
   text-align:center;
-  font-size:0.72rem;
+  font-size:0.82rem;
   font-style: italic;
   color: var(--gold-bright);
   min-height: 16px;
@@ -310,7 +343,7 @@ h1,h2,h3, .display{
 }
 .hand-label{
   font-family:'Cinzel', serif;
-  font-size:0.65rem;
+  font-size:0.8rem;
   color: var(--parchment-dim);
   letter-spacing:0.1em;
   margin-bottom:4px;
@@ -331,9 +364,10 @@ h1,h2,h3, .display{
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 6px 10px;
-  max-height: 108px;
+  max-height: 130px;
   overflow-y:auto;
-  font-size: 0.72rem;
+  font-size: 0.82rem;
+  line-height: 1.35;
   color: var(--parchment-dim);
 }
 .log__line{ padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
@@ -427,7 +461,7 @@ footer.credits{
 }
 
 @media (min-width: 520px){
-  .card--small{ width: 92px; }
+  .card--small{ width: 106px; }
 }
 
 /* ---------- mode menu ---------- */
@@ -501,7 +535,7 @@ footer.credits{
   display:none;
   text-align:center;
   font-family:'Cinzel', serif;
-  font-size:0.72rem;
+  font-size:0.8rem;
   color: var(--gold-bright);
   background: rgba(201,162,74,0.1);
   border: 1px solid var(--line);
@@ -593,17 +627,11 @@ footer.credits{
   0%{ background-position: 0 0, 0% 50%; }
   100%{ background-position: 0 0, 300% 50%; }
 }
-.card__rarity-badge{
-  position:absolute; bottom:0; left:0; right:0;
-  text-align:center;
-  font-family:'Cinzel', serif;
-  font-size: 0.42rem;
-  letter-spacing: 0.08em;
-  padding: 1px 0;
-  color:#000;
+.card__rarity-badge{ display:none; }
+.card__epic-star{
+  color: var(--gold-bright);
+  text-shadow: 0 0 4px rgba(240,207,122,0.8);
 }
-.card__rarity-badge.forte{ background: linear-gradient(90deg,#a97fd6,#c9a24a); }
-.card__rarity-badge.epocale{ background: linear-gradient(90deg,#f0cf7a,#e37fd0,#7fc9e3); }
 
 .rarity-tag{
   display:inline-block;
@@ -720,6 +748,40 @@ footer.credits{
   45%{ transform: translateX(-6px); }
   60%{ transform: translateX(5px); }
   75%{ transform: translateX(-3px); }
+}
+
+.fx-fate-banner{
+  position:fixed; left:50%; top:16%;
+  transform: translate(-50%,-10px);
+  width:min(92vw, 420px);
+  padding:16px 18px;
+  border-radius:14px;
+  border:1px solid var(--gold);
+  background: linear-gradient(180deg, rgba(36,27,19,0.97), rgba(18,13,10,0.97));
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 30px rgba(240,207,122,0.25);
+  z-index: 220;
+  text-align:center;
+  animation: fx-fate-in-out 2600ms ease-in-out forwards;
+  pointer-events:none;
+}
+.fx-fate-banner__title{
+  font-family:'Cinzel', serif;
+  font-size:1.05rem;
+  color: var(--gold-bright);
+  margin:0 0 6px;
+  text-shadow: 0 0 14px rgba(240,207,122,0.35);
+}
+.fx-fate-banner__desc{
+  font-size:0.86rem;
+  color: var(--parchment);
+  margin:0;
+  line-height:1.35;
+}
+@keyframes fx-fate-in-out{
+  0%{ opacity:0; transform: translate(-50%,-24px) scale(0.94); }
+  10%{ opacity:1; transform: translate(-50%,0) scale(1); }
+  82%{ opacity:1; transform: translate(-50%,0) scale(1); }
+  100%{ opacity:0; transform: translate(-50%,-14px) scale(0.98); }
 }
 
 .fx-coin-overlay{
@@ -919,6 +981,157 @@ footer.credits{
   object-fit:cover;
 }
 
+.fx-reaction-pop{
+  position:fixed;
+  transform: translate(-50%,-50%);
+  font-size: 3.4rem;
+  z-index: 215;
+  animation: fx-reaction-anim 1400ms ease-out forwards;
+  pointer-events:none;
+}
+@keyframes fx-reaction-anim{
+  0%{ opacity:0; transform: translate(-50%,-50%) scale(0.3) rotate(-8deg); }
+  20%{ opacity:1; transform: translate(-50%,-50%) scale(1.25) rotate(4deg); }
+  35%{ transform: translate(-50%,-50%) scale(1) rotate(0deg); }
+  80%{ opacity:1; transform: translate(-50%,-60%) scale(1); }
+  100%{ opacity:0; transform: translate(-50%,-90%) scale(0.9); }
+}
+
+/* ---------- smoke, sparks, deck draw ---------- */
+.fx-smoke{
+  position:fixed;
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(190,190,190,0.55), rgba(120,120,120,0.15) 65%, transparent 100%);
+  transform: translate(-50%,-50%);
+  animation: fx-smoke-rise 950ms ease-out forwards;
+  pointer-events:none;
+  z-index: 204;
+}
+@keyframes fx-smoke-rise{
+  0%{ opacity:0.75; transform: translate(-50%,-50%) scale(0.4); }
+  100%{ opacity:0; transform: translate(-50%,-160%) scale(1.5); }
+}
+.fx-spark{
+  position:fixed;
+  width:3px; height:3px;
+  border-radius:50%;
+  box-shadow: 0 0 7px 2px rgba(255,220,140,0.9);
+  transform: translate(-50%,-50%);
+  animation-name: fx-spark-fly;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  pointer-events:none;
+  z-index: 208;
+}
+@keyframes fx-spark-fly{
+  0%{ transform: translate(-50%,-50%) translate(0,0); opacity:1; }
+  100%{ transform: translate(-50%,-50%) translate(var(--dx),var(--dy)); opacity:0; }
+}
+.fx-draw-card{
+  position:fixed;
+  border-radius:6px;
+  border: 1.5px solid var(--gold);
+  background: radial-gradient(circle at 50% 35%, #3a2c18, #14100d);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+  z-index: 207;
+  pointer-events:none;
+}
+.fx-support-card{
+  position:fixed;
+  border-radius:6px;
+  border: 1.5px solid var(--teal-bright);
+  box-shadow: 0 4px 14px rgba(127,214,208,0.5);
+  z-index: 207;
+  pointer-events:none;
+  object-fit:cover;
+}
+.fx-support-glow{
+  position:fixed;
+  border-radius:8px;
+  box-shadow: 0 0 0 3px var(--teal-bright), 0 0 30px rgba(127,214,208,0.7);
+  z-index: 206;
+  pointer-events:none;
+  animation: fx-summon-pop 700ms ease-out forwards;
+}
+
+/* ---------- deck pile ---------- */
+.deck-pile{
+  position:relative;
+  width: 46px; height: 64px;
+  margin: 0 auto 4px;
+}
+.deck-pile__card{
+  position:absolute;
+  inset:0;
+  border-radius:6px;
+  border: 1.5px solid var(--gold);
+  background: linear-gradient(135deg, #241a0f, #120d0a);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+}
+.deck-pile__card:nth-child(1){ transform: translate(2px,2px) rotate(-4deg); }
+.deck-pile__card:nth-child(2){ transform: translate(1px,1px) rotate(2deg); }
+.deck-pile__top{
+  transform:none !important;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Cinzel',serif; color:var(--gold-bright); font-size:0.82rem; font-weight:700;
+  background: radial-gradient(circle at 50% 35%, #3a2c18, #14100d);
+}
+.deck-pile.is-drawable{ cursor:pointer; animation: deck-pulse 1.15s ease-in-out infinite; }
+@keyframes deck-pulse{
+  0%,100%{ box-shadow: 0 0 0 0 rgba(240,207,122,0.55); }
+  50%{ box-shadow: 0 0 0 9px rgba(240,207,122,0); }
+}
+.deck-label{
+  text-align:center;
+  font-family:'Cinzel', serif;
+  font-size: 0.62rem;
+  color: var(--parchment-dim);
+}
+
+/* ---------- support zone ---------- */
+.support-zone{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding: 3px 0;
+}
+.support-zone__label{
+  font-family:'Cinzel', serif;
+  font-size: 0.62rem;
+  color: var(--parchment-dim);
+  letter-spacing: 0.04em;
+}
+.support-zone__slots{ display:flex; gap:4px; }
+.support-zone__slot{
+  width: 20px; height: 20px;
+  border-radius: 4px;
+  border: 1px dashed var(--teal);
+  background: rgba(127,196,186,0.06);
+}
+.support-zone__slot.is-used{
+  border-style: solid;
+  background: rgba(127,196,186,0.35);
+}
+
+/* ---------- back-button toast ---------- */
+.back-toast{
+  position:fixed;
+  left:50%; bottom: calc(24px + env(safe-area-inset-bottom,0px));
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(20,15,10,0.95);
+  border: 1px solid var(--gold);
+  color: var(--parchment);
+  font-size: 0.82rem;
+  padding: 10px 16px;
+  border-radius: 8px;
+  z-index: 500;
+  opacity:0;
+  transition: opacity 250ms ease, transform 250ms ease;
+  pointer-events:none;
+}
+.back-toast.is-visible{ opacity:1; transform: translateX(-50%) translateY(0); }
+
 /* ---------- summon vignette ---------- */
 #summon-vignette{
   position:fixed;
@@ -933,7 +1146,7 @@ footer.credits{
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
   z-index: 190;
   opacity:0;
-  transition: transform 420ms cubic-bezier(.2,.9,.3,1.2), opacity 300ms ease;
+  transition: transform 650ms cubic-bezier(.2,.85,.25,1.05), opacity 550ms ease;
   pointer-events:none;
 }
 #summon-vignette.is-visible{
@@ -941,21 +1154,21 @@ footer.credits{
   opacity:1;
 }
 #summon-vignette img{
-  width:44px; aspect-ratio:5/8; object-fit:cover;
+  width:54px; aspect-ratio:5/8; object-fit:cover;
   border-radius:5px; border:1px solid var(--gold);
   flex-shrink:0;
 }
 .summon-vignette__name{
   font-family:'Cinzel', serif;
-  font-size:0.8rem;
+  font-size:0.92rem;
   color: var(--gold-bright);
 }
 .summon-vignette__scene{
-  font-size:0.74rem;
+  font-size:0.84rem;
   font-style:italic;
   color: var(--parchment-dim);
   margin-top:2px;
-  line-height:1.3;
+  line-height:1.35;
 }
 
 /* ---------- spectator / leaderboard ---------- */
@@ -986,6 +1199,86 @@ footer.credits{
   width:100%;
   margin-top:8px;
 }
+
+/* ---------- quick reactions ---------- */
+.reaction-bar{
+  display:none;
+  justify-content:center;
+  gap:8px;
+  padding: 4px 0;
+}
+.reaction-bar.is-visible{ display:flex; }
+.reaction-btn{
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  width: 38px; height: 38px;
+  font-size: 1.15rem;
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* ---------- card of the day ---------- */
+#card-of-day{
+  display:flex; gap:10px; align-items:center;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin: 10px 0;
+  cursor:pointer;
+}
+#card-of-day img{ width:42px; aspect-ratio:5/8; object-fit:cover; border-radius:5px; border:1px solid var(--gold); flex-shrink:0; }
+.card-of-day__label{ font-family:'Cinzel', serif; font-size:0.6rem; color: var(--parchment-dim); letter-spacing:0.08em; }
+.card-of-day__name{ font-family:'Cinzel', serif; font-size:0.85rem; color: var(--gold-bright); margin-top:1px; }
+.card-of-day__flavor{ font-size:0.7rem; font-style:italic; color: var(--parchment-dim); margin-top:2px; }
+
+/* ---------- secondary menu links ---------- */
+.secondary-links{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:10px 16px;
+  margin-top:12px; padding-top:10px; border-top:1px solid var(--line);
+}
+.secondary-links button{
+  background:none; border:none; color: var(--parchment-dim);
+  font-family:'EB Garamond', serif; font-style:italic; font-size:0.78rem;
+  text-decoration:underline; cursor:pointer; padding:2px;
+}
+#deck-status-line{
+  display:none;
+  text-align:center;
+  font-size:0.72rem;
+  color: var(--gold-bright);
+  margin-top:8px;
+}
+
+/* ---------- deck builder ---------- */
+#deckbuilder-count{ text-align:center; font-family:'Cinzel', serif; font-size:0.8rem; margin: 6px 0; }
+.picker-item.is-deck-selected{ border-color: var(--gold-bright); box-shadow: 0 0 0 2px var(--gold-bright); }
+.picker-item.is-deck-selected::after{
+  content:'✓'; position:absolute; top:2px; right:2px;
+  background: var(--gold-bright); color:#000;
+  width:16px; height:16px; border-radius:50%;
+  font-size:0.6rem; display:flex; align-items:center; justify-content:center;
+}
+.picker-item{ position:relative; }
+
+/* ---------- gallery ---------- */
+.gallery-filter-row{ display:flex; gap:6px; justify-content:center; margin-bottom:10px; }
+.gallery-filter-btn{
+  background: var(--panel-2); border:1px solid var(--line); color: var(--parchment-dim);
+  font-family:'Cinzel', serif; font-size:0.68rem; padding:6px 10px; border-radius:6px; cursor:pointer;
+}
+.gallery-filter-btn.is-active{ border-color: var(--gold); color: var(--gold-bright); }
+#gallery-grid{ max-height:60vh; overflow-y:auto; }
+
+/* ---------- duel history ---------- */
+#history-list{ max-height:55vh; overflow-y:auto; }
+.history-row{ padding:8px 4px; border-bottom:1px solid rgba(255,255,255,0.05); }
+.history-row__result{ font-family:'Cinzel', serif; font-size:0.82rem; text-transform:capitalize; }
+.history-row.is-win .history-row__result{ color:#7fd6a0; }
+.history-row.is-loss .history-row__result{ color: var(--red-bright); }
+.history-row.is-draw .history-row__result{ color: var(--parchment-dim); }
+.history-row__detail{ font-size:0.7rem; color: var(--parchment-dim); margin-top:1px; }
 
 </style>
 </head>
@@ -1021,24 +1314,59 @@ footer.credits{
   <div class="hand-count" id="opp-hand-count">5 carte in mano</div>
 
   <div class="field" id="field-top"></div>
+  <div class="support-zone">
+    <span class="support-zone__label">Supporto avversario</span>
+    <div class="support-zone__slots" id="support-zone-top">
+      <div class="support-zone__slot"></div>
+      <div class="support-zone__slot"></div>
+    </div>
+  </div>
 
   <div class="midstrip">
-    <div class="deck-badge"><b id="deck-count">0</b>mazzo</div>
+    <div>
+      <div class="deck-pile" id="deck-pile">
+        <div class="deck-pile__card"></div>
+        <div class="deck-pile__card"></div>
+        <div class="deck-pile__card deck-pile__top"><span id="deck-count">0</span></div>
+      </div>
+      <div class="deck-label">mazzo</div>
+    </div>
     <div class="turn-indicator" id="turn-indicator">—</div>
+  </div>
+  <div class="actionbar">
     <button class="btn-main btn-danger" id="btn-end-turn">Fine turno</button>
   </div>
 
   <div class="hint" id="hint"></div>
+  <div class="hint" id="tribute-hint" style="display:none; color:var(--red-bright);"></div>
 
   <div class="field" id="field-bottom"></div>
+  <div class="support-zone">
+    <span class="support-zone__label">Zona Supporto</span>
+    <div class="support-zone__slots" id="support-zone-bottom">
+      <div class="support-zone__slot"></div>
+      <div class="support-zone__slot"></div>
+    </div>
+  </div>
 
   <div class="actionbar" id="summon-actions" style="display:none;">
     <button class="btn-main" id="btn-pos-atk">Evoca in Attacco</button>
     <button class="btn-main btn-ghost" id="btn-pos-def">Evoca in Difesa</button>
   </div>
+  <div class="actionbar" id="support-action" style="display:none;">
+    <button class="btn-main" id="btn-activate-support" style="border-color:var(--teal-bright); color:var(--teal-bright);">✦ Attiva come Supporto</button>
+  </div>
   <div class="actionbar">
     <button class="btn-main btn-danger" id="btn-direct-attack" style="display:none;">Attacco diretto</button>
     <button class="btn-main btn-ghost" id="btn-cancel-attack" style="display:none;">Annulla attacco</button>
+  </div>
+
+  <div class="reaction-bar" id="reaction-bar">
+    <button class="reaction-btn" data-emoji="👏">👏</button>
+    <button class="reaction-btn" data-emoji="😅">😅</button>
+    <button class="reaction-btn" data-emoji="🔥">🔥</button>
+    <button class="reaction-btn" data-emoji="😱">😱</button>
+    <button class="reaction-btn" data-emoji="🤝">🤝</button>
   </div>
 
   <div class="hand-wrap">
@@ -1137,6 +1465,17 @@ footer.credits{
         <div class="mode-btn__icon">&#127942;</div>
         <div><div class="mode-btn__title">Classifica</div><div class="mode-btn__sub">I duellanti più forti, visibile a tutti</div></div>
       </div>
+      <div class="mode-btn" id="btn-mode-daily">
+        <div class="mode-btn__icon">&#128197;</div>
+        <div><div class="mode-btn__title">Sfida del Giorno</div><div class="mode-btn__sub">Stesso mazzo per tutti oggi, contro il Computer (Difficile)</div></div>
+      </div>
+    </div>
+    <div id="card-of-day"></div>
+    <div id="deck-status-line"></div>
+    <div class="secondary-links">
+      <button id="btn-open-gallery">Galleria arcani</button>
+      <button id="btn-open-history">Cronologia duelli</button>
+      <button id="btn-open-deckbuilder">Costruisci mazzo</button>
     </div>
   </div>
 </div>
@@ -1237,7 +1576,59 @@ footer.credits{
   <div class="overlay__panel">
     <h2>Duello concluso</h2>
     <p id="gameover-text"></p>
-    <button class="btn-main" id="btn-new-game">Torna al menu</button>
+    <button class="btn-main" id="btn-rematch">Rivincita</button>
+    <button class="btn-main btn-ghost" id="btn-new-game">Torna al menu</button>
+  </div>
+</div>
+
+<!-- DAILY CHALLENGE -->
+<div class="overlay" id="mode-daily-overlay">
+  <div class="overlay__panel">
+    <h2>&#128197; Sfida del Giorno</h2>
+    <p style="font-size:0.76rem;">Oggi (<span id="daily-date-label"></span>) tutti affrontano lo stesso mazzo, nello stesso ordine di pesca, contro il Computer in modalità Difficile. Il tuo risultato entra nella classifica di oggi.</p>
+    <label for="daily-name-input">Il tuo nome</label>
+    <input type="text" id="daily-name-input" placeholder="Sfidante" autocomplete="off"/>
+    <button class="btn-main" id="btn-daily-start">Inizia la sfida</button>
+    <h3 style="font-size:0.85rem; color:var(--gold-bright); margin:14px 0 4px;">Classifica di oggi</h3>
+    <div id="daily-leaderboard-list"></div>
+    <button class="btn-main btn-ghost" id="btn-close-daily" style="margin-top:10px;">Chiudi</button>
+  </div>
+</div>
+
+<!-- CARD GALLERY -->
+<div class="overlay" id="gallery-overlay">
+  <div class="overlay__panel" style="max-width:560px;">
+    <h2 style="font-size:1.05rem;">Galleria degli Arcani</h2>
+    <div class="gallery-filter-row">
+      <button class="gallery-filter-btn is-active" data-filter="all">Tutte</button>
+      <button class="gallery-filter-btn" data-filter="normale">Normali</button>
+      <button class="gallery-filter-btn" data-filter="epocale">Epocali</button>
+    </div>
+    <div class="picker-grid" id="gallery-grid"></div>
+    <button class="btn-main btn-ghost" id="btn-close-gallery" style="margin-top:10px;">Chiudi</button>
+  </div>
+</div>
+
+<!-- DUEL HISTORY -->
+<div class="overlay" id="history-overlay">
+  <div class="overlay__panel">
+    <h2 style="font-size:1.05rem;">Cronologia duelli</h2>
+    <p style="font-size:0.7rem;">Salvata solo su questo dispositivo.</p>
+    <div id="history-list"></div>
+    <button class="btn-main" id="btn-close-history" style="margin-top:10px;">Chiudi</button>
+  </div>
+</div>
+
+<!-- DECK BUILDER -->
+<div class="overlay" id="deckbuilder-overlay">
+  <div class="overlay__panel" style="max-width:560px;">
+    <h2 style="font-size:1.05rem;">Costruisci il tuo mazzo</h2>
+    <p style="font-size:0.72rem;">Tocca le carte da includere. Vale per tutte le modalità future, finché non lo cambi.</p>
+    <div id="deckbuilder-count"></div>
+    <div class="picker-grid" id="deckbuilder-grid"></div>
+    <button class="btn-main" id="btn-deckbuilder-save" style="margin-top:10px;">Salva mazzo</button>
+    <button class="btn-main btn-ghost" id="btn-deckbuilder-fullset">Usa mazzo completo (45)</button>
+    <button class="btn-main btn-ghost" id="btn-close-deckbuilder">Annulla</button>
   </div>
 </div>
 
@@ -1247,24 +1638,35 @@ footer.credits{
     <h2 style="margin-bottom:2px;">Regolamento</h2>
     <div class="rules-scroll">
       <h3>Obiettivo</h3>
-      <p>Ogni giocatore inizia con 4000 Punti Vita (LP). Vince chi riduce a 0 gli LP dell'avversario, oppure se l'avversario deve pescare da un mazzo esaurito.</p>
+      <p>Il regolamento segue la struttura ufficiale di Yu-Gi-Oh!, adattata a un mazzo di soli mostri (senza Magie, Trappole o Extra Deck). Ogni giocatore inizia con <b>8000 LP</b>. Vince chi riduce a 0 gli LP dell'avversario, oppure se l'avversario deve pescare da un mazzo esaurito.</p>
 
       <h3>Statistiche</h3>
       <p>ATK e DEF di ogni arcano derivano dal suo numero (0&ndash;44): <b>ATK = numero &times; 100</b>, <b>DEF = (44 &minus; numero) &times; 50</b>.</p>
 
-      <h3>Turno</h3>
+      <h3>Struttura del turno</h3>
       <ul>
-        <li>Si pesca automaticamente 1 carta a inizio turno.</li>
-        <li>Puoi evocare <b>una sola carta</b> a turno su uno slot libero, in Attacco o Difesa.</li>
-        <li>Le carte in Attacco possono dichiarare battaglia (una volta ciascuna); quelle in Difesa non attaccano.</li>
-        <li>Limite di mano: 6 carte a fine turno.</li>
+        <li><b>Pesca</b> — tocca il mazzo per pescare una carta a inizio turno (chi comincia il duello non pesca al suo primissimo turno).</li>
+        <li><b>Turno libero</b> — nello stesso turno puoi: evocare <b>una sola carta</b> su uno slot libero (Attacco o Difesa); cambiare la posizione di un mostro già in campo toccando la sua icona 🔄 (una volta a testa, non lo stesso turno in cui l'hai evocata, non dopo che ha attaccato); e dichiarare battaglia con ognuno dei tuoi mostri in Attacco, una volta ciascuno — nell'ordine che preferisci.</li>
+        <li><b>Fine turno</b> — limite di mano: scarta fino ad averne 6.</li>
       </ul>
+
+      <h3>Evocazione Tributo</h3>
+      <p>Come nel gioco originale, i mostri più potenti costano caro: gli arcani con <b>ATK 2500+</b> richiedono di offrire in Tributo 1 tuo mostro in campo; quelli con <b>ATK 3500+</b> ne richiedono 2.</p>
+
+      <h3>Come attaccare</h3>
+      <p>Tocca una tua carta in Attacco (che non abbia già attaccato) per selezionarla, poi tocca la carta avversaria che vuoi colpire — o il pulsante "Attacco diretto" se il campo avversario è vuoto.</p>
+
+      <h3>Zona Supporto</h3>
+      <p>Invece di evocarla come mostro, puoi mandare una carta dalla mano nella Zona Supporto per attivare subito il suo effetto: niente ATK/DEF, niente Tributo, va dritta al cimitero dopo. Puoi farlo fino a 2 volte a turno. Solo le carte con un effetto utile da sole (pesca, cura, indebolire il nemico, distruggere il campo...) mostrano questa opzione — quelle il cui effetto ha senso solo restando in campo (es. Gli Amanti, il Führer, L'Inganno) restano evocabili solo come mostri.</p>
 
       <h3>Battaglia</h3>
       <ul>
         <li>Attacco vs Attacco: vince chi ha ATK piu alto, la differenza è danno da LP. Parità: entrambi distrutti.</li>
         <li>Attacco vs Difesa: se l'ATK supera la DEF, il difensore è distrutto senza danni da LP. Se l'ATK è inferiore, l'attaccante subisce la differenza come danno.</li>
       </ul>
+
+      <h3>Semplificazioni rispetto al gioco originale</h3>
+      <p>Per restare fedele al tuo mazzo personalizzato (solo mostri, nessuna Magia/Trappola/Extra Deck) e giocabile comodamente da telefono, questa versione non include: Catene e Priorità (non ci sono carte a cui rispondere), mostri coperti/Set in Difesa (qui sono sempre scoperti), Evocazioni Speciali di tipo Xyz/Synchro/Fusion/Rituale/Pendulum, e la separazione tra Fase Principale 1/Battaglia/Principale 2 (qui evocare, cambiare posizione e attaccare si possono fare liberamente, nell'ordine che preferisci, nello stesso turno).</p>
 
       <h3>Modalità di gioco</h3>
       <ul>
@@ -1526,6 +1928,27 @@ function playNoiseBurst(startAt, duration, opts){
 }
 
 function soundTap(){ playTone(1400, 0, 0.05, {type:'sine', volume:0.05}); }
+function soundDraw(){
+  playTone(1600, 0, 0.03, {type:'triangle', volume:0.06});
+  playTone(1200, 0.04, 0.08, {type:'sine', volume:0.09});
+}
+function soundDestroy(){
+  playNoiseBurst(0, 0.22, {freq:500, volume:0.14});
+  playTone(200, 0.02, 0.2, {type:'sawtooth', volume:0.07, glideTo:40});
+}
+function soundTribute(){
+  playTone(160, 0, 0.18, {type:'square', volume:0.09, glideTo:80});
+  playNoiseBurst(0.05, 0.12, {freq:400, volume:0.08});
+}
+function soundPhase(){
+  playTone(660, 0, 0.06, {type:'triangle', volume:0.08});
+  playTone(990, 0.06, 0.09, {type:'triangle', volume:0.08});
+}
+function soundSupport(){
+  playTone(520, 0, 0.08, {type:'sine', volume:0.1});
+  playTone(780, 0.07, 0.10, {type:'triangle', volume:0.1});
+  playTone(1040, 0.14, 0.14, {type:'sine', volume:0.09});
+}
 function soundSelect(){ playTone(700, 0, 0.07, {type:'triangle', volume:0.09}); }
 function soundSummon(rarity){
   playTone(440, 0, 0.09, {type:'sine', volume:0.11});
@@ -1554,6 +1977,9 @@ function soundCoin(){
   playTone(900, 0, 0.05, {type:'square', volume:0.08});
   playTone(1100, 0.05, 0.05, {type:'square', volume:0.08});
   playTone(950, 0.1, 0.08, {type:'square', volume:0.08});
+}
+function vibrate(pattern){
+  try{ if(soundEnabled && navigator.vibrate) navigator.vibrate(pattern); } catch(e){ /* ignore */ }
 }
 
 /* ===================== ARCANA DUEL — game engine ===================== */
@@ -1590,6 +2016,7 @@ let state = null;
 let uidCounter = 1;
 let selectedHandIndex = null;
 let selectedFieldSlot = null;
+let selectedTributeSlots = [];
 let pendingSummonPosition = null;
 let mySeat = 0;          // local seat in online mode (0 or 1) — never synced
 let viewerRole = 'player'; // 'player' | 'spectator' — local only, never synced
@@ -1597,6 +2024,43 @@ let matchRef = null;     // Firestore doc reference for online mode
 let uiLocked = false;    // true while the bot "thinks" — blocks human input
 let fxEvents = [];       // queued visual-effect events, drained by the UI layer after each render
 function pushFx(ev){ fxEvents.push(ev); }
+
+/* ---- custom deck pool (deck builder) ---- */
+let customDeckPool = null;
+try{
+  const raw = localStorage.getItem('triage_custom_deck');
+  if(raw){ const arr = JSON.parse(raw); if(Array.isArray(arr) && arr.length>=15) customDeckPool = arr; }
+} catch(e){ /* ignore */ }
+
+function saveCustomDeckPool(arr){
+  customDeckPool = (arr && arr.length>=15) ? arr : null;
+  try{
+    if(customDeckPool) localStorage.setItem('triage_custom_deck', JSON.stringify(customDeckPool));
+    else localStorage.removeItem('triage_custom_deck');
+  } catch(e){ /* ignore */ }
+}
+
+/* ---- seeded PRNG for the daily challenge ---- */
+function hashStringToInt(str){
+  let h = 1779033703 ^ str.length;
+  for(let i=0;i<str.length;i++){
+    h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+    h = (h << 13) | (h >>> 19);
+  }
+  return (h >>> 0);
+}
+function mulberry32(seed){
+  return function(){
+    seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function todayDateStr(){
+  const d = new Date();
+  return d.getUTCFullYear() + '-' + String(d.getUTCMonth()+1).padStart(2,'0') + '-' + String(d.getUTCDate()).padStart(2,'0');
+}
 
 function log(msg){
   state.log.unshift(msg);
@@ -1606,10 +2070,12 @@ function log(msg){
 
 function sleep(ms){ return new Promise(r=>setTimeout(r, ms)); }
 
-function shuffledDeck(){
-  const arr = CARD_DEFS.map((c,i)=>({ uid:0, idx:i }));
+function shuffledDeck(seedStr){
+  const pool = (customDeckPool && customDeckPool.length>=15) ? customDeckPool : CARD_DEFS.map((c,i)=>i);
+  const arr = pool.map(i=>({ uid:0, idx:i }));
+  const rng = seedStr ? mulberry32(hashStringToInt(seedStr)) : Math.random;
   for(let i=arr.length-1;i>0;i--){
-    const j = Math.floor(Math.random()*(i+1));
+    const j = Math.floor(rng()*(i+1));
     [arr[i],arr[j]]=[arr[j],arr[i]];
   }
   arr.forEach(c=>{ c.uid = uidCounter++; });
@@ -1617,27 +2083,70 @@ function shuffledDeck(){
 }
 
 /* mode: 'hotseat' | 'bot' | 'online'
-   opts: { name1, name2, botDifficulty } */
+   opts: { name1, name2, botDifficulty, seed, isDaily } */
 function newGame(mode, opts){
   opts = opts||{};
   state = {
     mode: mode,
     botDifficulty: opts.botDifficulty || 'normal',
+    isDaily: !!opts.isDaily,
     players: [
-      { name:opts.name1||'Giocatore 1', lp:4000, hand:[], field:[null,null,null] },
-      { name:opts.name2||'Giocatore 2', lp:4000, hand:[], field:[null,null,null] }
+      { name:opts.name1||'Giocatore 1', lp:8000, hand:[], field:[null,null,null] },
+      { name:opts.name2||'Giocatore 2', lp:8000, hand:[], field:[null,null,null] }
     ],
-    deck: shuffledDeck(),
+    deck: shuffledDeck(opts.seed),
     current: 0,
     turnCount: 1,
+    phase: 'action',
     summonedThisTurn: false,
+    supportUsedThisTurn: 0,
+    lastAction: null,
+    positionChangedThisTurn: {},
     log: [],
     over: false,
     pendingReturns: [],
     graveyard: []
   };
   for(let i=0;i<5;i++){ drawCard(0,true); drawCard(1,true); }
-  log('Il duello ha inizio. Il mazzo è mischiato, le carte sono state distribuite.');
+  log('Il duello ha inizio (8000 LP a testa). Il giocatore che comincia non pesca al suo primissimo turno.');
+}
+
+/* Yu-Gi-Oh-style tribute cost: how many of your own monsters
+   must be sacrificed to Normal Summon a given card. */
+function tributeCostFor(idx){
+  const atk = CARD_DEFS[idx].atk;
+  if(atk>=3500) return 2;
+  if(atk>=2500) return 1;
+  return 0;
+}
+
+/* Effects meaningful as a standalone "support" activation (card goes to the
+   graveyard instead of the field, no tribute, no ATK/DEF, no monster body).
+   Field-only / passive effects (union, fuhrer, passioni, mago, matto, morte,
+   inganno) are excluded because they need to stay on the field to matter. */
+const SUPPORT_EFFECTS = new Set(['eremita','diavolo','torre','heal400','mondo',
+  'manodidio','fortuna','lunanera','madre','sapienza','pericolo','presagio','ciclo']);
+
+function isSupportable(idx){
+  return SUPPORT_EFFECTS.has(CARD_DEFS[idx].effect);
+}
+
+function activateSupport(handIdx){
+  const p = state.players[state.current];
+  const card = p.hand[handIdx];
+  if(!card) return false;
+  if(state.phase!=='action') return false;
+  if(state.supportUsedThisTurn>=2) return false;
+  if(!isSupportable(card.idx)) return false;
+  const def = CARD_DEFS[card.idx];
+  p.hand.splice(handIdx,1);
+  state.supportUsedThisTurn++;
+  log(p.name + ' attiva ' + def.name + ' dalla Zona Supporto (' + state.supportUsedThisTurn + '/2 questo turno).');
+  state.lastAction = {type:'support', owner:state.current, cardIdx:card.idx, rarity:def.rarity, ts:Date.now()};
+  pushFx({type:'support', owner:state.current, cardIdx:card.idx, rarity:def.rarity});
+  triggerSummonEffect(card, state.current);
+  state.graveyard.push({idx:card.idx, ownerIdx:state.current, reason:'supporto'});
+  return true;
 }
 
 function drawCard(playerIdx, silent){
@@ -1870,6 +2379,8 @@ function endGame(winnerIdx, reason){
   renderAll();
   showGameOver();
   recordLeaderboardResult();
+  recordLocalHistory();
+  if(state.isDaily) recordDailyResult();
   clearOnlineSession();
 }
 
@@ -1888,22 +2399,56 @@ function botStatsRecord(difficulty, humanWon){
   try{ localStorage.setItem(BOT_STATS_KEY, JSON.stringify(stats)); } catch(e){ /* ignore */ }
 }
 
-function playToField(handIdx, slot, position){
+function playToField(handIdx, slot, position, tributeSlots){
   const p = state.players[state.current];
   const card = p.hand[handIdx];
-  if(!card || p.field[slot]!==null || state.summonedThisTurn) return;
+  if(!card || p.field[slot]!==null || state.summonedThisTurn) return false;
+  if(state.phase!=='action') return false;
+  const needed = tributeCostFor(card.idx);
+  tributeSlots = tributeSlots || [];
+  if(tributeSlots.length !== needed) return false;
+  for(const ts of tributeSlots){
+    if(ts===slot || !p.field[ts]) return false;
+  }
+  // pay the tribute cost first
+  tributeSlots.forEach(ts=>{
+    const tributed = p.field[ts];
+    p.field[ts] = null;
+    state.graveyard.push({idx:tributed.idx, ownerIdx:state.current, reason:'tributo'});
+    log(p.name + ' offre in Tributo ' + CARD_DEFS[tributed.idx].name + '.');
+    soundTributeSafe();
+  });
   p.hand.splice(handIdx,1);
   card.position = position;
   card.attacked = false;
+  card.summonedTurn = state.turnCount;
   p.field[slot] = card;
   state.summonedThisTurn = true;
   const def = CARD_DEFS[card.idx];
-  log(p.name + ' evoca ' + def.name + ' (' + def.atk + '/' + def.def + ') in posizione di ' + (position==='atk'?'Attacco':'Difesa') + '.');
+  const evocLabel = needed>0 ? ('Evocazione Tributo (' + needed + ')') : 'Evocazione Normale';
+  log(p.name + ' esegue una ' + evocLabel + ': ' + def.name + ' (' + def.atk + '/' + def.def + ') in posizione di ' + (position==='atk'?'Attacco':'Difesa') + '.');
   triggerSummonEffect(card, state.current);
   pushFx({type:'summon', owner:state.current, slot:slot, rarity:def.rarity, cardIdx:card.idx});
+  return true;
+}
+
+function changePosition(slot){
+  const p = state.players[state.current];
+  const card = p.field[slot];
+  if(!card) return false;
+  if(state.phase!=='action') return false;
+  if(card.summonedTurn === state.turnCount) return false;
+  if(card.attacked) return false;
+  const key = state.current + '_' + slot + '_' + state.turnCount;
+  if(state.positionChangedThisTurn[key]) return false;
+  card.position = card.position==='atk' ? 'def' : 'atk';
+  state.positionChangedThisTurn[key] = true;
+  log(p.name + ' cambia la posizione di ' + CARD_DEFS[card.idx].name + ' in ' + (card.position==='atk'?'Attacco':'Difesa') + '.');
+  return true;
 }
 
 function resolveBattle(attackerSlot, targetSlot){
+  if(state.phase!=='action') return;
   const atkIdx = state.current, defIdx = 1-state.current;
   const attackerP = state.players[atkIdx], defenderP = state.players[defIdx];
   const attacker = attackerP.field[attackerSlot];
@@ -2007,21 +2552,135 @@ function endTurnCore(){
   }
   state.current = 1-state.current;
   state.turnCount++;
+  state.phase = 'draw';
   state.summonedThisTurn = false;
+  state.supportUsedThisTurn = 0;
   processReturns();
   state.players[state.current].field.forEach(c=>{ if(c) c.attacked=false; });
-  selectedHandIndex=null; selectedFieldSlot=null;
+  selectedHandIndex=null; selectedFieldSlot=null; selectedTributeSlots=[];
 }
 
 function afterChangeover(){
-  drawCard(state.current);
   log('--- Turno ' + state.turnCount + ': tocca a ' + state.players[state.current].name + ' ---');
+  maybeFateEvent();
 }
+
+/* ===================== EVENTI DEL DESTINO ===================== */
+/* Ogni FATE_INTERVAL turni, un evento casuale colpisce entrambi i giocatori. */
+const FATE_INTERVAL = 3;
+const FATE_EVENTS = {
+  tempesta: { title:'Tempesta di Lame', desc:"Lame invisibili sferzano l'arena: tutti i mostri in campo perdono 300 ATK." },
+  marea: { title:'Marea di Sangue', desc:'Una marea scarlatta sommerge il campo: entrambi i duellanti perdono 500 LP.' },
+  dono: { title:'Dono degli Dèi', desc:'Gli arcani sorridono: entrambi i duellanti recuperano 600 LP.' },
+  eclissi: { title:'Eclissi Arcana', desc:'Il cielo si oscura e i destini si rimescolano: entrambi pescano 1 carta.' },
+  giudizio: { title:'Giudizio Universale', desc:"Una sentenza cala dall'alto: il mostro più debole di ciascun giocatore viene distrutto." },
+  furia: { title:'Furia Occulta', desc:"Un'energia proibita infiamma i mostri: tutti in campo guadagnano 400 ATK." },
+  carestia: { title:'Carestia', desc:'Le riserve si prosciugano: entrambi scartano 1 carta a caso dalla mano.' },
+  specchio: { title:'Specchio del Fato', desc:'Il destino pareggia i conti: gli LP più bassi salgono a metà di quelli più alti.' }
+};
+const FATE_POOL = ['tempesta','marea','dono','eclissi','giudizio','furia','carestia','specchio'];
+
+function maybeFateEvent(){
+  if(state.over) return;
+  if(state.turnCount < FATE_INTERVAL) return;
+  if(state.turnCount % FATE_INTERVAL !== 0) return;
+  const key = FATE_POOL[Math.floor(Math.random()*FATE_POOL.length)];
+  const info = FATE_EVENTS[key];
+  log('⚡ EVENTO DEL DESTINO — ' + info.title + ': ' + info.desc);
+  pushFx({type:'fate', title:info.title, desc:info.desc});
+  applyFate(key);
+  checkWin();
+}
+
+function applyFate(key){
+  const p0 = state.players[0], p1 = state.players[1];
+  switch(key){
+    case 'tempesta':
+      [0,1].forEach(pi=> state.players[pi].field.forEach(c=>{ if(c) c.atkBuff = (c.atkBuff||0) - 300; }));
+      pushFx({type:'flash', color:'rgba(120,140,200,0.28)'});
+      pushFx({type:'shake'});
+      break;
+    case 'marea':
+      p0.lp = Math.max(0, p0.lp-500);
+      p1.lp = Math.max(0, p1.lp-500);
+      pushFx({type:'lp', playerIdx:0, delta:-500});
+      pushFx({type:'lp', playerIdx:1, delta:-500});
+      pushFx({type:'flash', color:'rgba(168,36,36,0.3)'});
+      pushFx({type:'shake'});
+      break;
+    case 'dono':
+      p0.lp += 600; p1.lp += 600;
+      pushFx({type:'lp', playerIdx:0, delta:600});
+      pushFx({type:'lp', playerIdx:1, delta:600});
+      pushFx({type:'flash', color:'rgba(212,175,55,0.25)'});
+      break;
+    case 'eclissi':
+      drawCard(0,true); drawCard(1,true);
+      pushFx({type:'draw'});
+      break;
+    case 'giudizio':
+      [0,1].forEach(pi=>{
+        let weakSlot=-1, weak=Infinity;
+        state.players[pi].field.forEach((c,i)=>{
+          if(c){ const v = calcAtk(c, pi, {}); if(v<weak){ weak=v; weakSlot=i; } }
+        });
+        if(weakSlot>=0) destroyMonster(pi, weakSlot, {byBattle:false});
+      });
+      pushFx({type:'flash', color:'rgba(235,235,245,0.25)'});
+      pushFx({type:'shake'});
+      break;
+    case 'furia':
+      [0,1].forEach(pi=> state.players[pi].field.forEach(c=>{ if(c) c.atkBuff = (c.atkBuff||0) + 400; }));
+      pushFx({type:'flash', color:'rgba(208,90,60,0.28)'});
+      break;
+    case 'carestia':
+      [0,1].forEach(pi=>{
+        const hand = state.players[pi].hand;
+        if(hand.length>0){
+          const r = Math.floor(Math.random()*hand.length);
+          const d = hand.splice(r,1)[0];
+          state.graveyard.push({idx:d.idx, ownerIdx:pi, reason:'carestia'});
+        }
+      });
+      break;
+    case 'specchio': {
+      const hi = Math.max(p0.lp, p1.lp);
+      const target = Math.floor(hi/2);
+      [0,1].forEach(pi=>{
+        if(state.players[pi].lp < target){
+          const gain = target - state.players[pi].lp;
+          state.players[pi].lp = target;
+          pushFx({type:'lp', playerIdx:pi, delta:gain});
+        }
+      });
+      pushFx({type:'flash', color:'rgba(212,175,55,0.22)'});
+      break;
+    }
+  }
+}
+
+/* Draws the turn's card. Called by tapping the deck pile (human), or
+   automatically by the bot. Transitions Draw Phase -> Main Phase 1. */
+function performDraw(){
+  if(!state || state.over || state.phase!=='draw') return false;
+  const ok = drawCard(state.current);
+  if(state.over) return false;
+  if(ok){
+    pushFx({type:'draw', owner:state.current});
+    soundDrawSafe();
+  }
+  state.phase = 'action';
+  return true;
+}
+function soundDrawSafe(){ try{ soundDraw(); }catch(e){ /* sound module not loaded yet */ } }
+function soundTributeSafe(){ try{ soundTribute(); }catch(e){ /* ignore */ } }
+function soundPhaseSafe(){ try{ soundPhase(); }catch(e){ /* ignore */ } }
 
 /* Called by the "Fine turno" button. Branches by mode. */
 async function endTurn(){
   if(state.over || uiLocked) return;
   if(state.mode==='online' && !isMyOnlineTurn()) return;
+  if(state.phase!=='action') return;
   endTurnCore();
 
   if(state.mode==='hotseat'){
@@ -2044,24 +2703,34 @@ async function botPlay(){
   renderAll();
   await sleep(650);
 
+  if(state.phase==='draw'){
+    performDraw();
+    renderAll();
+    if(state.mode==='online') pushOnlineState();
+    await sleep(500);
+  }
+  if(state.over){ uiLocked = false; renderAll(); return; }
+
   const diff = state.botDifficulty;
   const me = 1, opp = 0;
   const bot = state.players[me], human = state.players[opp];
 
-  // --- decide a summon ---
+  // --- decide a summon (respecting tribute costs, Yu-Gi-Oh style) ---
   if(!state.summonedThisTurn && bot.hand.length>0){
     const freeSlot = bot.field.findIndex(s=>s===null);
-    if(freeSlot>=0){
+    const monstersOnField = fieldCountOf(me);
+    const affordable = bot.hand.map((c,i)=>({c,i})).filter(x=>tributeCostFor(x.c.idx) <= monstersOnField);
+    if(freeSlot>=0 && affordable.length>0){
       let handIdx, position;
       if(diff==='easy'){
-        handIdx = Math.floor(Math.random()*bot.hand.length);
+        const pick = affordable[Math.floor(Math.random()*affordable.length)];
+        handIdx = pick.i;
         position = Math.random()<0.5 ? 'atk' : 'def';
       } else {
-        // rank hand by ATK descending, DEF descending
-        let bestAtkIdx=0, bestDefIdx=0;
-        bot.hand.forEach((c,i)=>{
-          if(CARD_DEFS[c.idx].atk > CARD_DEFS[bot.hand[bestAtkIdx].idx].atk) bestAtkIdx=i;
-          if(CARD_DEFS[c.idx].def > CARD_DEFS[bot.hand[bestDefIdx].idx].def) bestDefIdx=i;
+        let bestAtkIdx=affordable[0].i, bestDefIdx=affordable[0].i;
+        affordable.forEach(x=>{
+          if(CARD_DEFS[x.c.idx].atk > CARD_DEFS[bot.hand[bestAtkIdx].idx].atk) bestAtkIdx=x.i;
+          if(CARD_DEFS[x.c.idx].def > CARD_DEFS[bot.hand[bestDefIdx].idx].def) bestDefIdx=x.i;
         });
         const underThreat = human.field.some(c=>c && c.position==='atk' && calcAtk(c,opp,{})>=1500);
         const behind = bot.lp < human.lp*0.6;
@@ -2070,22 +2739,54 @@ async function botPlay(){
         else { handIdx=bestAtkIdx; position='atk'; }
 
         if(diff==='hard'){
-          // prefer a beneficial-effect card if it's not much weaker
           const goodFx = ['fortuna','heal400','manodidio','torre','madre'];
           let fxIdx=-1;
-          bot.hand.forEach((c,i)=>{ if(goodFx.includes(CARD_DEFS[c.idx].effect)) fxIdx=i; });
+          affordable.forEach(x=>{ if(goodFx.includes(CARD_DEFS[x.c.idx].effect)) fxIdx=x.i; });
           if(fxIdx>=0 && CARD_DEFS[bot.hand[fxIdx].idx].effect!=='torre'){ handIdx=fxIdx; }
         }
       }
-      playToField(handIdx, freeSlot, position);
+      const needed = tributeCostFor(bot.hand[handIdx].idx);
+      let tributeSlots = [];
+      if(needed>0){
+        const owned = bot.field.map((c,i)=>({c,i})).filter(x=>x.c);
+        owned.sort((a,b)=>calcAtk(a.c,me,{}) - calcAtk(b.c,me,{}));
+        tributeSlots = owned.slice(0,needed).map(x=>x.i);
+      }
+      const targetSlot = tributeSlots.includes(freeSlot) ? freeSlot : (tributeSlots[0] !== undefined && bot.field[freeSlot]===null ? freeSlot : freeSlot);
+      playToField(handIdx, freeSlot, position, tributeSlots);
       renderAll();
       if(state.mode==='online') pushOnlineState();
       await sleep(750);
     }
   }
 
-  // --- decide attacks ---
+  // --- possibly activate a support card from hand ---
+  if(diff!=='easy' && state.supportUsedThisTurn<2 && bot.hand.length>0){
+    const idx = bot.hand.findIndex(c=>isSupportable(c.idx));
+    if(idx>=0){
+      activateSupport(idx);
+      renderAll();
+      if(state.mode==='online') pushOnlineState();
+      await sleep(650);
+    }
+  }
+
+  // --- possibly change a monster's position before battling ---
+  if(diff!=='easy'){
+    bot.field.forEach((c,i)=>{
+      if(!c || c.summonedTurn===state.turnCount || c.attacked) return;
+      const isWeakAtk = c.position==='atk' && calcAtk(c,me,{})<600;
+      if(isWeakAtk){ changePosition(i); }
+    });
+    renderAll();
+  }
+
+  // --- battle: attack with eligible monsters ---
   if(!state.over){
+    renderAll();
+    if(state.mode==='online') pushOnlineState();
+    await sleep(500);
+
     const attackers = bot.field.map((c,i)=>({c,i})).filter(x=>x.c && x.c.position==='atk' && !x.c.attacked);
     for(const {c,i} of attackers){
       if(state.over) break;
@@ -2102,7 +2803,6 @@ async function botPlay(){
           targetSlot = opts[Math.floor(Math.random()*opts.length)];
         }
       } else {
-        // normal/hard: find the best trade
         let best=-1, bestScore=-Infinity;
         human.field.forEach((c2,i2)=>{
           if(!c2) return;
@@ -2142,8 +2842,8 @@ let realState = null;
 function realNewSession(name1, name2){
   realState = {
     players: [
-      { name:name1||'Giocatore 1', lp:4000, field:[null,null,null] },
-      { name:name2||'Giocatore 2', lp:4000, field:[null,null,null] }
+      { name:name1||'Giocatore 1', lp:8000, field:[null,null,null] },
+      { name:name2||'Giocatore 2', lp:8000, field:[null,null,null] }
     ],
     turnCount:1,
     log: [],
@@ -2369,6 +3069,7 @@ async function resumeOnlineSession(){
   state = snap.data().state;
   showScreen('duel');
   hideAllOverlays();
+  lastSeenReactionTs = Date.now();
   subscribeMatch();
   renderAll();
   return true;
@@ -2376,6 +3077,7 @@ async function resumeOnlineSession(){
 
 function retryOnlineConnection(){
   if(!matchRef) return;
+  lastSeenReactionTs = Date.now();
   subscribeMatch();
 }
 
@@ -2392,6 +3094,7 @@ async function onlineCreate(name){
   } catch(e){ onlineError('Impossibile creare la partita: '+(e&&e.message||e)); return; }
   saveOnlineSession(code, 0, 'player', name);
   showOnlineLobbyWaiting(code);
+  lastSeenReactionTs = Date.now();
   subscribeMatch();
 }
 
@@ -2413,8 +3116,56 @@ async function onlineJoin(code, name){
   viewerRole = 'player';
   saveOnlineSession(code.toUpperCase(), 1, 'player', name);
   hideAllOverlays();
+  lastSeenReactionTs = Date.now();
   subscribeMatch();
   maybeAutoStartTutorial();
+}
+
+function diffAndPushFx(prev, next){
+  if(!prev) return;
+  if(next.lastAction && next.lastAction.type==='support' &&
+     (!prev.lastAction || prev.lastAction.ts !== next.lastAction.ts)){
+    pushFx({type:'support', owner:next.lastAction.owner, cardIdx:next.lastAction.cardIdx, rarity:next.lastAction.rarity});
+  }
+  // find a monster that just became "attacked" this pass (the attack source, if any)
+  let attackerInfo = null;
+  [0,1].forEach(pi=>{
+    prev.players[pi].field.forEach((c,i)=>{
+      const nc = next.players[pi].field[i];
+      if(c && nc && !c.attacked && nc.attacked){
+        attackerInfo = {owner:pi, slot:i, cardIdx:nc.idx};
+      }
+    });
+  });
+  // field diffs: summons and destructions
+  [0,1].forEach(pi=>{
+    for(let i=0;i<3;i++){
+      const pc = prev.players[pi].field[i];
+      const nc = next.players[pi].field[i];
+      if(!pc && nc){
+        pushFx({type:'summon', owner:pi, slot:i, rarity:CARD_DEFS[nc.idx].rarity, cardIdx:nc.idx});
+      } else if(pc && !nc){
+        if(attackerInfo && attackerInfo.owner !== pi){
+          pushFx({type:'clash', aOwner:attackerInfo.owner, aSlot:attackerInfo.slot, aCardIdx:attackerInfo.cardIdx, dOwner:pi, dSlot:i, dCardIdx:pc.idx});
+        }
+        pushFx({type:'destroy', owner:pi, slot:i});
+      }
+    }
+  });
+  // direct-attack detection (no field destruction, opponent's field stayed empty, their LP dropped)
+  if(attackerInfo){
+    const oppIdx = 1-attackerInfo.owner;
+    const lpDelta = next.players[oppIdx].lp - prev.players[oppIdx].lp;
+    const oppFieldEmpty = next.players[oppIdx].field.every(s=>!s) && prev.players[oppIdx].field.every(s=>!s);
+    if(lpDelta<0 && oppFieldEmpty){
+      pushFx({type:'clash', aOwner:attackerInfo.owner, aSlot:attackerInfo.slot, aCardIdx:attackerInfo.cardIdx, dOwner:oppIdx, dSlot:null, dCardIdx:null});
+    }
+  }
+  // LP diffs (damage / heal numbers)
+  [0,1].forEach(pi=>{
+    const delta = next.players[pi].lp - prev.players[pi].lp;
+    if(delta!==0) pushFx({type:'lp', playerIdx:pi, delta:delta});
+  });
 }
 
 function subscribeMatch(){
@@ -2424,15 +3175,14 @@ function subscribeMatch(){
     connectionLost = false;
     if(!snap.exists) return;
     const data = snap.data();
-    const prevLp = state ? [state.players[0].lp, state.players[1].lp] : null;
+    const prevState = state;
     state = data.state;
-    if(prevLp){
-      [0,1].forEach(pi=>{
-        const delta = state.players[pi].lp - prevLp[pi];
-        if(delta!==0) pushFx({type:'lp', playerIdx:pi, delta:delta});
-      });
-    }
+    diffAndPushFx(prevState, state);
     if(mySeat===0 && data.seat1joined){ hideAllOverlays(); maybeAutoStartTutorial(); }
+    if(data.reaction && data.reaction.ts > lastSeenReactionTs && data.reaction.from !== mySeat){
+      lastSeenReactionTs = data.reaction.ts;
+      pushFx({type:'reaction', emoji:data.reaction.emoji});
+    }
     renderAll();
     if(state.over) showGameOver();
   }, err=>{
@@ -2469,6 +3219,7 @@ async function onlineSpectate(code){
   mySeat = -1;
   state = snap.data().state;
   hideAllOverlays();
+  lastSeenReactionTs = Date.now();
   subscribeMatch();
   renderAll();
 }
@@ -2506,6 +3257,96 @@ async function recordLeaderboardResult(){
       }, {merge:true});
     } catch(e){ /* best-effort, never block the UI on this */ }
   }
+}
+
+/* ===================== LOCAL DUEL HISTORY ===================== */
+
+const HISTORY_KEY = 'triage_history';
+function recordLocalHistory(){
+  if(state.winnerIdx===undefined) return;
+  let youIdx = null;
+  if(state.mode==='bot') youIdx = 0;
+  else if(state.mode==='online' && viewerRole==='player') youIdx = mySeat;
+  if(youIdx===null) return;
+  const oppIdx = 1-youIdx;
+  const result = state.winnerIdx===-1 ? 'pareggio' : (state.winnerIdx===youIdx ? 'vittoria' : 'sconfitta');
+  const entry = {
+    mode: state.mode,
+    opponent: state.players[oppIdx].name,
+    result: result,
+    turns: state.turnCount,
+    date: new Date().toISOString()
+  };
+  try{
+    const raw = localStorage.getItem(HISTORY_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    arr.unshift(entry);
+    if(arr.length>30) arr.length = 30;
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(arr));
+  } catch(e){ /* ignore */ }
+}
+function getLocalHistory(){
+  try{
+    const raw = localStorage.getItem(HISTORY_KEY);
+    if(raw) return JSON.parse(raw);
+  } catch(e){ /* ignore */ }
+  return [];
+}
+
+/* ===================== DAILY CHALLENGE ===================== */
+
+async function recordDailyResult(){
+  const db = getFsDb();
+  if(!db) return;
+  const won = state.winnerIdx===0;
+  try{
+    await db.collection('daily_results').add({
+      date: todayDateStr(),
+      name: state.players[0].name,
+      won: won,
+      turns: state.turnCount,
+      ts: Date.now()
+    });
+  } catch(e){ /* best-effort */ }
+}
+
+async function fetchDailyResults(onData){
+  const db = getFsDb();
+  if(!db){ onData(null); return; }
+  try{
+    const snap = await db.collection('daily_results').where('date','==', todayDateStr()).limit(100).get();
+    const rows = [];
+    snap.forEach(doc=>rows.push(doc.data()));
+    rows.sort((a,b)=>{
+      if(a.won !== b.won) return a.won ? -1 : 1;
+      return (a.turns||99) - (b.turns||99);
+    });
+    onData(rows.slice(0,10));
+  } catch(e){ onData(null); }
+}
+
+/* ===================== QUICK REMATCH ===================== */
+
+function quickRematch(){
+  if(state.mode==='bot'){
+    newGame('bot', {name1:state.players[0].name, name2:'Computer', botDifficulty:state.botDifficulty});
+  } else if(state.mode==='hotseat'){
+    newGame('hotseat', {name1:state.players[0].name, name2:state.players[1].name});
+  } else if(state.mode==='online'){
+    if(viewerRole==='spectator') return;
+    newGame('online', {name1:state.players[0].name, name2:state.players[1].name});
+    pushOnlineState();
+  }
+}
+
+/* ===================== ONLINE QUICK REACTIONS ===================== */
+
+let lastSeenReactionTs = 0;
+async function sendReaction(emoji){
+  if(!matchRef || state.mode!=='online' || viewerRole==='spectator') return;
+  const ts = Date.now();
+  lastSeenReactionTs = ts;
+  try{ await matchRef.update({ reaction: {emoji, from:mySeat, ts} }); } catch(e){ /* ignore */ }
 }
 
 let leaderboardUnsub = null;
@@ -2603,11 +3444,103 @@ function fxSummonFlash(rect, rarity){
   const count = rarity==='epocale' ? 22 : (rarity==='forte' ? 14 : 8);
   const colors = rarity==='epocale' ? ['#f0cf7a','#e37fd0','#7fc9e3','#f7f0c8'] : (rarity==='forte' ? ['#f0cf7a','#c9a24a'] : ['#c9a24a','#8a7040']);
   fxParticleBurst(rect, {count, colors});
+  if(rarity==='epocale') fxSparks(rect, 14, ['#fff2b0','#f0cf7a','#ffffff']);
+}
+
+function fxSmokePuff(rect){
+  if(!rect) return;
+  const cx = rect.left + rect.width/2;
+  const cy = rect.top + rect.height/2;
+  for(let i=0;i<5;i++){
+    const s = document.createElement('div');
+    s.className = 'fx-smoke';
+    const dx = (Math.random()-0.5)*40;
+    const size = 26 + Math.random()*28;
+    s.style.left = (cx+dx)+'px';
+    s.style.top = cy+'px';
+    s.style.width = size+'px';
+    s.style.height = size+'px';
+    s.style.animationDelay = (i*40)+'ms';
+    fxLayer.appendChild(s);
+    s.addEventListener('animationend', ()=>s.remove());
+  }
+}
+
+function fxSparks(rect, count, colors){
+  if(!rect) return;
+  count = count || 10;
+  colors = colors || ['#fff2b0','#ffdf8a'];
+  const cx = rect.left + rect.width/2;
+  const cy = rect.top + rect.height/2;
+  for(let i=0;i<count;i++){
+    const sp = document.createElement('div');
+    sp.className = 'fx-spark';
+    const ang = Math.random()*Math.PI*2;
+    const dist = 20 + Math.random()*55;
+    sp.style.left = cx+'px'; sp.style.top = cy+'px';
+    sp.style.background = colors[Math.floor(Math.random()*colors.length)];
+    sp.style.setProperty('--dx', (Math.cos(ang)*dist)+'px');
+    sp.style.setProperty('--dy', (Math.sin(ang)*dist)+'px');
+    sp.style.animationDuration = (300+Math.random()*250)+'ms';
+    fxLayer.appendChild(sp);
+    sp.addEventListener('animationend', ()=>sp.remove());
+  }
+}
+
+function fxSupportActivate(rect, cardIdx, rarity){
+  if(!rect) return;
+  const card = document.createElement('img');
+  card.src = imgSrc(cardIdx);
+  card.className = 'fx-support-card';
+  card.style.left = rect.left+'px';
+  card.style.top = rect.top+'px';
+  card.style.width = rect.width+'px';
+  card.style.height = rect.height+'px';
+  fxLayer.appendChild(card);
+  const glow = document.createElement('div');
+  glow.className = 'fx-support-glow';
+  glow.style.left = rect.left+'px';
+  glow.style.top = rect.top+'px';
+  glow.style.width = rect.width+'px';
+  glow.style.height = rect.height+'px';
+  fxLayer.appendChild(glow);
+  fxSparks(rect, rarity==='epocale' ? 16 : 9, ['#7fd6d0','#a0f0ea','#ffffff']);
+  setTimeout(()=>{
+    card.style.transition = 'opacity 420ms ease-in, transform 420ms ease-in';
+    card.style.opacity = '0';
+    card.style.transform = 'scale(0.7) translateY(10px)';
+  }, 700);
+  setTimeout(()=>{ card.remove(); }, 1150);
+  glow.addEventListener('animationend', ()=>glow.remove());
+}
+
+function fxDeckDraw(){
+  const deckEl = document.getElementById('deck-pile');
+  const handEl = document.getElementById('hand');
+  if(!deckEl || !handEl) return;
+  const dRect = deckEl.getBoundingClientRect();
+  const hRect = handEl.getBoundingClientRect();
+  const card = document.createElement('div');
+  card.className = 'fx-draw-card';
+  card.style.left = dRect.left+'px';
+  card.style.top = dRect.top+'px';
+  card.style.width = dRect.width+'px';
+  card.style.height = dRect.height+'px';
+  fxLayer.appendChild(card);
+  requestAnimationFrame(()=>{
+    card.style.transition = 'left 480ms cubic-bezier(.3,.7,.4,1), top 480ms cubic-bezier(.3,.7,.4,1), transform 480ms ease, opacity 480ms ease';
+    card.style.left = (hRect.left + hRect.width/2 - dRect.width/2) + 'px';
+    card.style.top = hRect.top + 'px';
+    card.style.transform = 'scale(0.65) rotate(12deg)';
+    card.style.opacity = '0.25';
+  });
+  setTimeout(()=>card.remove(), 560);
 }
 
 function fxDestroyBurst(rect){
   if(!rect) return;
   fxParticleBurst(rect, {count:16, colors:['#7a2020','#d05a5a','#3a2c18']});
+  fxSmokePuff(rect);
   fxShakeElement(rect);
 }
 
@@ -2649,6 +3582,22 @@ function fxFloatNumber(rect, text, kind){
   el.style.top = rect.top + 'px';
   fxLayer.appendChild(el);
   el.addEventListener('animationend', ()=>el.remove());
+}
+
+function fxFateBanner(title, desc){
+  const el = document.createElement('div');
+  el.className = 'fx-fate-banner';
+  const titleEl = document.createElement('p');
+  titleEl.className = 'fx-fate-banner__title';
+  titleEl.textContent = '⚡ ' + title;
+  const descEl = document.createElement('p');
+  descEl.className = 'fx-fate-banner__desc';
+  descEl.textContent = desc;
+  el.appendChild(titleEl);
+  el.appendChild(descEl);
+  fxLayer.appendChild(el);
+  el.addEventListener('animationend', ()=>el.remove());
+  soundPhaseSafe();
 }
 
 function fxCoinFlip(onDone){
@@ -2695,11 +3644,22 @@ function fxCardClash(aRect, aIdx, dRect, dIdx){
   });
   setTimeout(()=>{
     fxParticleBurst({left:midX-4, top:midY-4, width:8, height:8}, {count:18, colors:['#f0cf7a','#d05a5a','#ffffff']});
+    fxSparks({left:midX-4, top:midY-4, width:8, height:8}, 12);
     a.style.transition = 'opacity 240ms ease-in';
     a.style.opacity = '0';
     if(d){ d.style.transition='opacity 240ms ease-in'; d.style.opacity='0'; }
   }, 280);
   setTimeout(()=>{ a.remove(); if(d) d.remove(); }, 560);
+}
+
+function fxReactionPop(emoji){
+  const el = document.createElement('div');
+  el.className = 'fx-reaction-pop';
+  el.textContent = emoji;
+  el.style.left = '50%';
+  el.style.top = '38%';
+  fxLayer.appendChild(el);
+  el.addEventListener('animationend', ()=>el.remove());
 }
 
 function fxConfetti(){
@@ -2919,6 +3879,169 @@ function checkResumeSession(){
   document.getElementById('resume-session-banner').style.display = 'block';
 }
 
+/* ===================== CARD GALLERY ===================== */
+
+let galleryFilter = 'all';
+function openGallery(){
+  document.getElementById('gallery-overlay').style.display = 'flex';
+  renderGallery();
+}
+function renderGallery(){
+  const grid = document.getElementById('gallery-grid');
+  const cards = CARD_DEFS.map((c,i)=>({c,i})).filter(x=>galleryFilter==='all' || x.c.rarity===galleryFilter);
+  grid.innerHTML = cards.map(x=>{
+    return '<div class="picker-item gallery-item-'+x.c.rarity+'" data-idx="'+x.i+'"><img src="'+imgSrc(x.i)+'"/><div class="picker-item__name">'+x.c.name+'</div><div class="picker-item__stats">'+x.c.atk+'/'+x.c.def+'</div></div>';
+  }).join('');
+}
+
+/* ===================== CARD OF THE DAY ===================== */
+
+function renderCardOfDay(){
+  const el = document.getElementById('card-of-day');
+  if(!el) return;
+  const idx = hashStringToInt(todayDateStr()) % CARD_DEFS.length;
+  const def = CARD_DEFS[idx];
+  el.innerHTML = '<img src="'+imgSrc(idx)+'"/><div><div class="card-of-day__label">Arcano del giorno</div><div class="card-of-day__name">'+def.name+'</div><div class="card-of-day__flavor">"'+def.flavor+'"</div></div>';
+  el.onclick = ()=>openCardZoom(idx);
+}
+
+/* ===================== DUEL HISTORY ===================== */
+
+function openHistory(){
+  document.getElementById('history-overlay').style.display = 'flex';
+  const list = getLocalHistory();
+  const el = document.getElementById('history-list');
+  if(list.length===0){
+    el.innerHTML = '<p style="text-align:center; color:var(--parchment-dim); font-style:italic;">Nessun duello ancora registrato su questo dispositivo.</p>';
+    return;
+  }
+  const modeLabel = {bot:'Computer', online:'Online', hotseat:'Locale'};
+  el.innerHTML = list.map(h=>{
+    const cls = h.result==='vittoria' ? 'is-win' : (h.result==='sconfitta' ? 'is-loss' : 'is-draw');
+    const d = new Date(h.date);
+    const dateStr = d.toLocaleDateString('it-IT', {day:'2-digit', month:'2-digit'});
+    return '<div class="history-row '+cls+'"><div class="history-row__result">'+h.result+'</div><div class="history-row__detail">vs '+h.opponent+' &middot; '+(modeLabel[h.mode]||h.mode)+' &middot; '+h.turns+' turni &middot; '+dateStr+'</div></div>';
+  }).join('');
+}
+
+/* ===================== DAILY CHALLENGE ===================== */
+
+function openDaily(){
+  document.getElementById('mode-daily-overlay').style.display = 'flex';
+  document.getElementById('daily-date-label').textContent = todayDateStr();
+  document.getElementById('daily-leaderboard-list').innerHTML = '<p style="text-align:center; color:var(--parchment-dim);">Caricamento...</p>';
+  fetchDailyResults(rows=>{
+    const el = document.getElementById('daily-leaderboard-list');
+    if(!rows){ el.innerHTML = '<p style="text-align:center; color:var(--red-bright);">Impossibile caricare la classifica di oggi.</p>'; return; }
+    if(rows.length===0){ el.innerHTML = '<p style="text-align:center; color:var(--parchment-dim); font-style:italic;">Nessuno ha ancora affrontato la sfida di oggi.</p>'; return; }
+    el.innerHTML = rows.map((r,i)=>{
+      return '<div class="leaderboard-row"><div class="leaderboard-row__rank">#'+(i+1)+'</div><div class="leaderboard-row__name">'+r.name+'</div><div class="leaderboard-row__stats">'+(r.won?('vittoria in '+r.turns+' turni'):'sconfitta')+'</div></div>';
+    }).join('');
+  });
+}
+function startDailyChallenge(name){
+  document.getElementById('mode-daily-overlay').style.display = 'none';
+  saveSavedName(name);
+  newGame('bot', {name1:name, name2:'Computer', botDifficulty:'hard', seed: todayDateStr(), isDaily:true});
+  showScreen('duel');
+  renderAll();
+  maybeAutoStartTutorial();
+}
+
+/* ===================== DECK BUILDER ===================== */
+
+let deckBuilderSelection = null;
+function openDeckBuilder(){
+  deckBuilderSelection = customDeckPool ? customDeckPool.slice() : CARD_DEFS.map((c,i)=>i);
+  document.getElementById('deckbuilder-overlay').style.display = 'flex';
+  renderDeckBuilder();
+}
+function renderDeckBuilder(){
+  const grid = document.getElementById('deckbuilder-grid');
+  if(!grid.dataset.built){
+    grid.innerHTML = CARD_DEFS.map((c,i)=>{
+      return '<div class="picker-item" data-idx="'+i+'"><img src="'+imgSrc(i)+'"/><div class="picker-item__name">'+c.name+'</div></div>';
+    }).join('');
+    grid.dataset.built = '1';
+  }
+  Array.from(grid.children).forEach((el,i)=>{
+    el.classList.toggle('is-deck-selected', deckBuilderSelection.includes(i));
+  });
+  const countEl = document.getElementById('deckbuilder-count');
+  countEl.textContent = deckBuilderSelection.length + ' / 45 selezionate (minimo 15)';
+  countEl.style.color = deckBuilderSelection.length>=15 ? 'var(--gold-bright)' : 'var(--red-bright)';
+}
+function updateDeckBuilderStatus(){
+  const el = document.getElementById('deck-status-line');
+  if(!el) return;
+  if(customDeckPool){
+    el.textContent = 'Mazzo personalizzato attivo: ' + customDeckPool.length + ' carte.';
+    el.style.display = 'block';
+  } else {
+    el.style.display = 'none';
+  }
+}
+
+/* ===================== ANDROID / BROWSER BACK BUTTON ===================== */
+
+const BACK_UTILITY_OVERLAYS = ['rules-overlay','card-zoom-overlay','graveyard-overlay','leaderboard-overlay',
+  'gallery-overlay','history-overlay','deckbuilder-overlay','picker-overlay','position-overlay','target-overlay'];
+const BACK_LOBBY_OVERLAYS = ['mode-bot-overlay','mode-hotseat-overlay','mode-online-overlay','mode-daily-overlay'];
+
+let lastBackPressTime = 0;
+
+function isOverlayVisible(id){
+  const el = document.getElementById(id);
+  return el && getComputedStyle(el).display !== 'none';
+}
+
+function pushBackGuardState(){
+  try{ history.pushState({triageGuard:true}, '', location.href); } catch(e){ /* ignore */ }
+}
+
+function showBackToast(msg){
+  let el = document.getElementById('back-toast');
+  if(!el){
+    el = document.createElement('div');
+    el.id = 'back-toast';
+    el.className = 'back-toast';
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+  el.classList.add('is-visible');
+  clearTimeout(showBackToast._t);
+  showBackToast._t = setTimeout(()=>el.classList.remove('is-visible'), 2000);
+}
+
+function initBackButtonGuard(){
+  pushBackGuardState();
+  window.addEventListener('popstate', ()=>{
+    const openUtility = BACK_UTILITY_OVERLAYS.find(isOverlayVisible);
+    if(openUtility){
+      document.getElementById(openUtility).style.display = 'none';
+      pushBackGuardState();
+      return;
+    }
+    const openLobby = BACK_LOBBY_OVERLAYS.find(isOverlayVisible);
+    if(openLobby){
+      document.getElementById(openLobby).style.display = 'none';
+      document.getElementById('start-overlay').style.display = 'flex';
+      pushBackGuardState();
+      return;
+    }
+    // nothing special open: double-back-to-exit, so a single accidental
+    // press never closes the game
+    const now = Date.now();
+    if(now - lastBackPressTime < 2000){
+      // second press within the window: let the browser proceed normally
+      return;
+    }
+    lastBackPressTime = now;
+    showBackToast('Premi di nuovo Indietro per uscire dal gioco.');
+    pushBackGuardState();
+  });
+}
+
 function viewPerspective(){
   if(!state) return {me:0, opp:1};
   if(state.mode==='bot') return {me:0, opp:1};
@@ -2947,6 +4070,13 @@ function processFxEvents(){
       fxSummonFlash(rect, ev.rarity);
       showSummonVignette(ev.cardIdx);
       soundSummon(ev.rarity);
+    } else if(ev.type==='support'){
+      const side = ev.owner===persp.me ? 'bottom' : 'top';
+      const zoneEl = document.getElementById(side==='bottom' ? 'support-zone-bottom' : 'support-zone-top');
+      const rect = zoneEl ? zoneEl.getBoundingClientRect() : null;
+      fxSupportActivate(rect, ev.cardIdx, ev.rarity);
+      showSummonVignette(ev.cardIdx);
+      soundSupport();
     } else if(ev.type==='clash'){
       const aSide = ev.aOwner===persp.me ? 'bottom' : 'top';
       const aRect = fxFieldRect(aSide, ev.aSlot);
@@ -2961,10 +4091,14 @@ function processFxEvents(){
       }
       fxCardClash(aRect, ev.aCardIdx, dRect, ev.dCardIdx);
       soundHit();
+      vibrate(25);
     } else if(ev.type==='destroy'){
       const side = ev.owner===persp.me ? 'bottom' : 'top';
       const rect = fxFieldRect(side, ev.slot);
       fxDestroyBurst(rect);
+      soundDestroy();
+    } else if(ev.type==='draw'){
+      fxDeckDraw();
     } else if(ev.type==='lp'){
       const side = ev.playerIdx===persp.me ? 'bottom' : 'top';
       const barEl = document.getElementById('lp-'+side+'-bar');
@@ -2974,15 +4108,21 @@ function processFxEvents(){
     } else if(ev.type==='shake'){
       fxScreenShake();
       soundHit();
+      vibrate(35);
     } else if(ev.type==='flash'){
       fxScreenFlash(ev.color);
     } else if(ev.type==='coinflip'){
       fxCoinFlip();
       soundCoin();
+    } else if(ev.type==='reaction'){
+      fxReactionPop(ev.emoji);
+    } else if(ev.type==='fate'){
+      fxFateBanner(ev.title, ev.desc);
     } else if(ev.type==='gameover'){
       fxConfetti();
       const persp2 = viewPerspective();
-      if(state.winnerIdx===persp2.me) soundVictory(); else if(state.winnerIdx===persp2.opp) soundDefeat();
+      if(state.winnerIdx===persp2.me){ soundVictory(); vibrate([30,50,30,50,60]); }
+      else if(state.winnerIdx===persp2.opp){ soundDefeat(); vibrate(150); }
     }
   });
 }
@@ -3005,9 +4145,8 @@ function cardHTML(card, opts){
     + '<div class="card__stats"><span class="atk">'+atk+'</span><span class="sep">/</span><span class="def">'+dfn+'</span></div>'
     + (opts.onField ? '<div class="card__pos">'+(card.position==='def'?'DIFESA':'ATTACCO')+'</div>' : '')
     + (def.effect!=='none' ? '<div class="card__fx-dot" title="'+EFFECT_INFO[def.effect].title+'">✦</div>' : '')
-    + (def.rarity!=='normale' ? '<div class="card__rarity-badge '+def.rarity+'">'+(def.rarity==='epocale'?'EPOCALE':'FORTE')+'</div>' : '')
     + '</div>'
-    + '<div class="card__name">'+def.name+'</div>'
+    + '<div class="card__name">'+def.name+(def.rarity==='epocale' ? ' <span class="card__epic-star" title="Arcano Epocale">★</span>' : '')+'</div>'
     + '</div>';
 }
 
@@ -3030,16 +4169,29 @@ function renderAll(){
   const me = persp.me, opp = persp.opp;
   const P = state.players;
   const locked = uiLocked || (state.mode==='online' && !isMyOnlineTurn());
+  const isSpectator = state.mode==='online' && viewerRole==='spectator';
+  const myTurn = !locked && !isSpectator;
 
   document.getElementById('p-top-name').textContent = P[opp].name;
   document.getElementById('p-bottom-name').textContent = P[me].name;
-  document.getElementById('turn-indicator').textContent = 'Turno ' + state.turnCount + ' — ' + P[state.current].name;
+  document.getElementById('turn-indicator').textContent = (state.phase==='draw' ? 'Turno ' + state.turnCount + ' · Pesca · ' : 'Turno ' + state.turnCount + ' · ') + P[state.current].name;
   document.getElementById('deck-count').textContent = state.deck.length;
+  const deckPile = document.getElementById('deck-pile');
+  const canDraw = myTurn && state.phase==='draw';
+  deckPile.classList.toggle('is-drawable', canDraw);
 
   setLP('top', P[opp].lp);
   setLP('bottom', P[me].lp);
 
   const attackMode = selectedFieldSlot!==null;
+  const canAct = state.phase==='action';
+
+  // tribute bookkeeping for the currently selected hand card, if any
+  let pendingTributeNeeded = 0;
+  if(selectedHandIndex!==null && P[me].hand[selectedHandIndex]){
+    pendingTributeNeeded = tributeCostFor(P[me].hand[selectedHandIndex].idx);
+  }
+  const tributeSelecting = pendingTributeNeeded>0 && selectedTributeSlots.length<pendingTributeNeeded;
 
   const topField = document.getElementById('field-top');
   topField.innerHTML = P[opp].field.map((c,i)=>{
@@ -3050,24 +4202,45 @@ function renderAll(){
   const bottomField = document.getElementById('field-bottom');
   bottomField.innerHTML = P[me].field.map((c,i)=>{
     if(!c) return emptySlotHTML(i, {role:'my-slot'});
-    const selected = selectedFieldSlot===i;
-    return cardHTML(c, {onField:true, ownerIdx:me, role:'my-card', slot:i, selected: selected});
+    const selected = selectedFieldSlot===i || selectedTributeSlots.includes(i);
+    const canReposition = myTurn && canAct && !attackMode
+      && c.summonedTurn!==state.turnCount && !c.attacked
+      && !state.positionChangedThisTurn[state.current+'_'+i+'_'+state.turnCount];
+    let html = cardHTML(c, {onField:true, ownerIdx:me, role:'my-card', slot:i, selected: selected});
+    if(canReposition){
+      html = html.replace('</div><div class="card__name">', '<button class="card__reposition-btn" data-role="reposition-btn" data-slot="'+i+'" title="Cambia posizione">🔄</button></div><div class="card__name">');
+    }
+    return html;
   }).join('');
 
   const hand = document.getElementById('hand');
-  const isSpectator = state.mode==='online' && viewerRole==='spectator';
   if(isSpectator){
     hand.innerHTML = '<div class="spectator-note">👁 Stai osservando in sola lettura.</div>';
   } else {
     hand.innerHTML = P[me].hand.map((c,i)=>{
-      return cardHTML(c, {ownerIdx:me, role:'hand-card', handIdx:i, selected: selectedHandIndex===i, small:true});
+      const needsTribute = tributeCostFor(c.idx)>0;
+      return cardHTML(c, {ownerIdx:me, role:'hand-card', handIdx:i, selected: selectedHandIndex===i, small:true, dim:false}) 
+        .replace('<div class="card__name">', needsTribute ? '<div class="card__tribute-mark">T'+tributeCostFor(c.idx)+'</div><div class="card__name">' : '<div class="card__name">');
     }).join('');
   }
 
   document.getElementById('opp-hand-count').textContent = P[opp].hand.length + ' carte in mano';
 
   const summonBtns = document.getElementById('summon-actions');
-  summonBtns.style.display = (selectedHandIndex!==null && !state.summonedThisTurn && !locked) ? 'flex' : 'none';
+  summonBtns.style.display = (selectedHandIndex!==null && !state.summonedThisTurn && myTurn && canAct && !tributeSelecting) ? 'flex' : 'none';
+
+  const supportBtnWrap = document.getElementById('support-action');
+  const selectedCardForSupport = (selectedHandIndex!==null && P[me].hand[selectedHandIndex]) ? P[me].hand[selectedHandIndex] : null;
+  const canSupport = selectedCardForSupport && myTurn && canAct && !tributeSelecting
+    && state.supportUsedThisTurn<2 && isSupportable(selectedCardForSupport.idx);
+  supportBtnWrap.style.display = canSupport ? 'flex' : 'none';
+
+  [['support-zone-bottom', state.current===me ? state.supportUsedThisTurn : 0],
+   ['support-zone-top', state.current===opp ? state.supportUsedThisTurn : 0]].forEach(([id,used])=>{
+    const zone = document.getElementById(id);
+    if(!zone) return;
+    Array.from(zone.children).forEach((slot,i)=>{ slot.classList.toggle('is-used', i<used); });
+  });
 
   const directBtn = document.getElementById('btn-direct-attack');
   directBtn.style.display = (attackMode && !P[opp].field.some(Boolean)) ? 'inline-block' : 'none';
@@ -3076,9 +4249,21 @@ function renderAll(){
   cancelBtn.style.display = attackMode ? 'inline-block' : 'none';
 
   const endBtn = document.getElementById('btn-end-turn');
-  endBtn.disabled = locked;
-  endBtn.style.opacity = locked ? '0.45' : '1';
+  const canEndTurn = myTurn && canAct;
+  endBtn.disabled = !canEndTurn;
+  endBtn.style.opacity = canEndTurn ? '1' : '0.45';
   endBtn.style.display = isSpectator ? 'none' : 'inline-block';
+
+  const tributeHint = document.getElementById('tribute-hint');
+  if(tributeSelecting){
+    tributeHint.style.display = 'block';
+    tributeHint.textContent = 'Offri in Tributo ' + pendingTributeNeeded + ' tuoi mostri (' + selectedTributeSlots.length + '/' + pendingTributeNeeded + ') per evocare questa carta.';
+  } else {
+    tributeHint.style.display = 'none';
+  }
+
+  const reactionBar = document.getElementById('reaction-bar');
+  if(reactionBar) reactionBar.classList.toggle('is-visible', state.mode==='online' && !isSpectator);
 
   const waitBanner = document.getElementById('online-wait-banner');
   if(waitBanner){
@@ -3096,6 +4281,9 @@ function renderAll(){
     } else if(state.mode==='bot' && uiLocked){
       waitBanner.style.display = 'block';
       waitBanner.textContent = 'Il computer sta pensando...';
+    } else if(canDraw){
+      waitBanner.style.display = 'block';
+      waitBanner.textContent = '🂠 Tocca il mazzo per pescare la tua carta.';
     } else {
       waitBanner.style.display = 'none';
     }
@@ -3115,16 +4303,16 @@ function showSummonVignette(cardIdx){
   void el.offsetWidth;
   el.classList.add('is-visible');
   clearTimeout(vignetteTimer);
-  vignetteTimer = setTimeout(()=>el.classList.remove('is-visible'), 2700);
+  vignetteTimer = setTimeout(()=>el.classList.remove('is-visible'), 4200);
 }
 
 function setLP(side, value){
   const clamped = Math.max(0, value);
   document.getElementById('lp-'+side+'-value').textContent = clamped;
-  const pct = Math.max(0, Math.min(100, (clamped/4000)*100));
+  const pct = Math.max(0, Math.min(100, (clamped/8000)*100));
   const bar = document.getElementById('lp-'+side+'-bar');
   bar.style.width = pct+'%';
-  bar.classList.toggle('lp-low', clamped<=1200);
+  bar.classList.toggle('lp-low', clamped<=2400);
 }
 
 function showChangeover(){
@@ -3141,10 +4329,13 @@ function showGameOver(){
   } else {
     text.textContent = state.players[state.winnerIdx].name + ' vince il duello!\n' + state.overReason;
   }
+  const rematchBtn = document.getElementById('btn-rematch');
+  const isSpec = state.mode==='online' && viewerRole==='spectator';
+  rematchBtn.style.display = isSpec ? 'none' : 'inline-block';
   el.style.display = 'flex';
 }
 
-function clearSelection(){ selectedHandIndex = null; selectedFieldSlot = null; }
+function clearSelection(){ selectedHandIndex = null; selectedFieldSlot = null; selectedTributeSlots = []; }
 
 function hideAllOverlays(){
   ['start-overlay','mode-bot-overlay','mode-hotseat-overlay','mode-online-overlay','changeover-overlay']
@@ -3297,38 +4488,72 @@ let realAttackPick = null; // {ownerIdx, slot} of chosen attacker
 function wireEvents(){
   document.getElementById('hand').addEventListener('click', e=>{
     if(uiLocked || (state.mode==='online' && !isMyOnlineTurn())) return;
+    if(state.phase!=='action') return;
     const el = e.target.closest('[data-role="hand-card"]');
     if(!el || state.summonedThisTurn) return;
     const idx = parseInt(el.getAttribute('data-hand'),10);
     selectedHandIndex = (selectedHandIndex===idx) ? null : idx;
     selectedFieldSlot = null;
+    selectedTributeSlots = [];
     if(selectedHandIndex!==null) tutorialEvent('handSelect');
     renderAll();
   });
 
   document.getElementById('field-bottom').addEventListener('click', e=>{
     if(uiLocked || (state.mode==='online' && !isMyOnlineTurn())) return;
+
+    const repoBtn = e.target.closest('[data-role="reposition-btn"]');
+    if(repoBtn){
+      const rslot = parseInt(repoBtn.getAttribute('data-slot'),10);
+      const ok = changePosition(rslot);
+      if(ok){ renderAll(); if(state.mode==='online') pushOnlineState(); }
+      return;
+    }
+
     const slotEl = e.target.closest('[data-slot]');
     if(!slotEl) return;
     const slot = parseInt(slotEl.getAttribute('data-slot'),10);
+
     if(selectedHandIndex!==null && !state.summonedThisTurn){
-      if(slotEl.classList.contains('slot--empty')){
-        if(pendingSummonPosition){
-          playToField(selectedHandIndex, slot, pendingSummonPosition);
-          selectedHandIndex = null; pendingSummonPosition = null;
-          tutorialEvent('summon');
+      const handCard = state.players[state.current].hand[selectedHandIndex];
+      const needed = handCard ? tributeCostFor(handCard.idx) : 0;
+
+      if(needed>0 && selectedTributeSlots.length<needed){
+        // tribute-selection mode: tapping an owned monster toggles it
+        if(!slotEl.classList.contains('slot--empty')){
+          const already = selectedTributeSlots.indexOf(slot);
+          if(already>=0){ selectedTributeSlots.splice(already,1); }
+          else if(selectedTributeSlots.length<needed){ selectedTributeSlots.push(slot); }
           renderAll();
-          if(state.mode==='online') pushOnlineState();
+        }
+        return;
+      }
+
+      if(slotEl.classList.contains('slot--empty') && !selectedTributeSlots.includes(slot)){
+        if(pendingSummonPosition){
+          const ok = playToField(selectedHandIndex, slot, pendingSummonPosition, selectedTributeSlots.slice());
+          if(ok){
+            selectedHandIndex = null; pendingSummonPosition = null; selectedTributeSlots = [];
+            tutorialEvent('summon');
+            renderAll();
+            if(state.mode==='online') pushOnlineState();
+          }
         }
       }
       return;
     }
+
     const card = state.players[state.current].field[slot];
-    if(card && card.position==='atk' && !card.attacked){
+    if(!card) return;
+    if(card.position==='atk' && !card.attacked){
       selectedFieldSlot = (selectedFieldSlot===slot) ? null : slot;
       selectedHandIndex = null;
       if(selectedFieldSlot!==null) tutorialEvent('attackSelect');
       renderAll();
+    } else if(card.attacked){
+      flashHint('Ha già attaccato questo turno.');
+    } else {
+      flashHint('Le carte in Difesa non possono attaccare. Usa 🔄 per cambiarne la posizione.');
     }
   });
 
@@ -3351,6 +4576,16 @@ function wireEvents(){
   document.getElementById('btn-pos-atk').addEventListener('click', ()=>{ pendingSummonPosition='atk'; flashHint('Scegli uno slot vuoto sul tuo campo.'); });
   document.getElementById('btn-pos-def').addEventListener('click', ()=>{ pendingSummonPosition='def'; flashHint('Scegli uno slot vuoto sul tuo campo.'); });
 
+  document.getElementById('btn-activate-support').addEventListener('click', ()=>{
+    if(selectedHandIndex===null) return;
+    const ok = activateSupport(selectedHandIndex);
+    if(ok){
+      selectedHandIndex = null;
+      renderAll();
+      if(state.mode==='online') pushOnlineState();
+    }
+  });
+
   document.getElementById('btn-direct-attack').addEventListener('click', ()=>{
     if(selectedFieldSlot===null) return;
     resolveBattle(selectedFieldSlot, null);
@@ -3369,6 +4604,24 @@ function wireEvents(){
     clearSelection();
     tutorialEvent('endTurn');
     endTurn();
+  });
+
+  document.getElementById('deck-pile').addEventListener('click', ()=>{
+    if(uiLocked) return;
+    if(state.mode==='online' && !isMyOnlineTurn()) return;
+    if(state.phase!=='draw') return;
+    const ok = performDraw();
+    renderAll();
+    if(ok && state.mode==='online') pushOnlineState();
+    if(state.over) return;
+  });
+
+  document.getElementById('reaction-bar').addEventListener('click', e=>{
+    const btn = e.target.closest('.reaction-btn');
+    if(!btn) return;
+    sendReaction(btn.getAttribute('data-emoji'));
+    pushFx({type:'reaction', emoji: btn.getAttribute('data-emoji')});
+    processFxEvents();
   });
 
   document.getElementById('btn-changeover-ready').addEventListener('click', ()=>{
@@ -3421,6 +4674,14 @@ function wireEvents(){
     clearTutorialHighlights();
     showScreen('duel');
     document.getElementById('start-overlay').style.display = 'flex';
+  });
+
+  document.getElementById('btn-rematch').addEventListener('click', ()=>{
+    document.getElementById('gameover-overlay').style.display = 'none';
+    clearSelection();
+    quickRematch();
+    showScreen('duel');
+    renderAll();
   });
 
   document.getElementById('btn-exit-real').addEventListener('click', ()=>{
@@ -3527,6 +4788,85 @@ function wireEvents(){
   document.getElementById('btn-close-leaderboard').addEventListener('click', ()=>{
     document.getElementById('leaderboard-overlay').style.display='none';
     if(leaderboardUnsub){ leaderboardUnsub(); leaderboardUnsub=null; }
+    document.getElementById('start-overlay').style.display='flex';
+  });
+
+  /* ---- daily challenge ---- */
+  document.getElementById('btn-mode-daily').addEventListener('click', ()=>{
+    document.getElementById('start-overlay').style.display='none';
+    openDaily();
+    const saved = getSavedName();
+    if(saved) document.getElementById('daily-name-input').value = saved;
+  });
+  document.getElementById('btn-close-daily').addEventListener('click', ()=>{
+    document.getElementById('mode-daily-overlay').style.display='none';
+    document.getElementById('start-overlay').style.display='flex';
+  });
+  document.getElementById('btn-daily-start').addEventListener('click', ()=>{
+    const name = document.getElementById('daily-name-input').value.trim() || 'Sfidante';
+    startDailyChallenge(name);
+  });
+
+  /* ---- card gallery ---- */
+  document.getElementById('btn-open-gallery').addEventListener('click', ()=>{
+    document.getElementById('start-overlay').style.display='none';
+    openGallery();
+  });
+  document.getElementById('btn-close-gallery').addEventListener('click', ()=>{
+    document.getElementById('gallery-overlay').style.display='none';
+    document.getElementById('start-overlay').style.display='flex';
+  });
+  document.querySelectorAll('.gallery-filter-btn').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      galleryFilter = b.getAttribute('data-filter');
+      document.querySelectorAll('.gallery-filter-btn').forEach(x=>x.classList.toggle('is-active', x===b));
+      renderGallery();
+    });
+  });
+  document.getElementById('gallery-grid').addEventListener('click', e=>{
+    const item = e.target.closest('.picker-item');
+    if(!item) return;
+    openCardZoom(parseInt(item.getAttribute('data-idx'),10));
+  });
+
+  /* ---- duel history ---- */
+  document.getElementById('btn-open-history').addEventListener('click', ()=>{
+    document.getElementById('start-overlay').style.display='none';
+    openHistory();
+  });
+  document.getElementById('btn-close-history').addEventListener('click', ()=>{
+    document.getElementById('history-overlay').style.display='none';
+    document.getElementById('start-overlay').style.display='flex';
+  });
+
+  /* ---- deck builder ---- */
+  document.getElementById('btn-open-deckbuilder').addEventListener('click', ()=>{
+    document.getElementById('start-overlay').style.display='none';
+    openDeckBuilder();
+  });
+  document.getElementById('btn-close-deckbuilder').addEventListener('click', ()=>{
+    document.getElementById('deckbuilder-overlay').style.display='none';
+    document.getElementById('start-overlay').style.display='flex';
+  });
+  document.getElementById('deckbuilder-grid').addEventListener('click', e=>{
+    const item = e.target.closest('.picker-item');
+    if(!item) return;
+    const idx = parseInt(item.getAttribute('data-idx'),10);
+    const pos = deckBuilderSelection.indexOf(idx);
+    if(pos>=0) deckBuilderSelection.splice(pos,1);
+    else deckBuilderSelection.push(idx);
+    renderDeckBuilder();
+  });
+  document.getElementById('btn-deckbuilder-fullset').addEventListener('click', ()=>{
+    deckBuilderSelection = CARD_DEFS.map((c,i)=>i);
+    renderDeckBuilder();
+  });
+  document.getElementById('btn-deckbuilder-save').addEventListener('click', ()=>{
+    if(deckBuilderSelection.length<15){ flashHint && flashHint('Servono almeno 15 carte.'); return; }
+    const isFull = deckBuilderSelection.length===45;
+    saveCustomDeckPool(isFull ? null : deckBuilderSelection);
+    updateDeckBuilderStatus();
+    document.getElementById('deckbuilder-overlay').style.display='none';
     document.getElementById('start-overlay').style.display='flex';
   });
 
@@ -3699,10 +5039,13 @@ function romanNumeral(n){
 document.addEventListener('DOMContentLoaded', ()=>{
   wireEvents();
   wireLongPress();
+  initBackButtonGuard();
   buildRulesModal();
   prefillNames();
   updateSoundButton();
   checkResumeSession();
+  renderCardOfDay();
+  updateDeckBuilderStatus();
   try{
     const params = new URLSearchParams(location.search);
     const codeParam = params.get('code');
@@ -3715,17 +5058,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
   } catch(e){ /* ignore malformed URLs */ }
 });
 
-/* ---------------- PWA installability: minimal service worker via Blob URL ---------------- */
+/* ---------------- PWA installability + real offline caching ---------------- */
+/* Registers sw.js, which must be uploaded in the SAME folder as this HTML file
+   on GitHub Pages. Falls back gracefully (no error shown) if sw.js is missing,
+   e.g. when the file is opened locally without hosting it yet. */
 if('serviceWorker' in navigator){
   window.addEventListener('load', ()=>{
-    try{
-      const swCode = "self.addEventListener('install',e=>self.skipWaiting());"
-        + "self.addEventListener('activate',e=>self.clients.claim());"
-        + "self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));});";
-      const blob = new Blob([swCode], {type:'application/javascript'});
-      const swUrl = URL.createObjectURL(blob);
-      navigator.serviceWorker.register(swUrl).catch(()=>{});
-    } catch(e){ /* installability is a bonus, never block the game on it */ }
+    navigator.serviceWorker.register('sw.js').catch(()=>{ /* offline support simply won't be available yet */ });
   });
 }
 
