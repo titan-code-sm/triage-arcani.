@@ -289,6 +289,14 @@ h1,h2,h3, .display{
   box-shadow: 0 0 0 3px var(--gold-bright), 0 0 16px rgba(240,207,122,0.6);
 }
 .card.is-attackable .card__frame{ box-shadow: 0 0 0 2px var(--red-bright); }
+.card.is-tribute-target .card__frame{
+  box-shadow: 0 0 0 2px var(--gold-bright);
+  animation: tribute-pulse 1.2s ease-in-out infinite;
+}
+@keyframes tribute-pulse{
+  0%,100%{ box-shadow: 0 0 0 2px var(--gold-bright); }
+  50%{ box-shadow: 0 0 0 2px var(--gold-bright), 0 0 12px rgba(240,207,122,0.7); }
+}
 .card.is-spent{ opacity:0.55; }
 .card.is-spent .card__frame{ filter: grayscale(0.5); }
 
@@ -4466,6 +4474,7 @@ function cardHTML(card, opts){
   if(opts.selected) cls.push('is-selected');
   if(opts.dim) cls.push('is-dim');
   if(opts.attackable) cls.push('is-attackable');
+  if(opts.tributeTarget) cls.push('is-tribute-target');
   if(card.attacked) cls.push('is-spent');
   return '<div class="'+cls.join(' ')+' '+(opts.onField?posClass:'')+'" data-role="'+(opts.role||'')+'" data-slot="'+(opts.slot!==undefined?opts.slot:'')+'" data-hand="'+(opts.handIdx!==undefined?opts.handIdx:'')+'" data-cardidx="'+card.idx+'">'
     + '<div class="card__frame">'
@@ -4536,7 +4545,8 @@ function renderAll(){
     const canReposition = myTurn && canAct && !attackMode
       && c.summonedTurn!==state.turnCount && !c.attacked
       && !state.positionChangedThisTurn[state.current+'_'+i+'_'+state.turnCount];
-    let html = cardHTML(c, {onField:true, ownerIdx:me, role:'my-card', slot:i, selected: selected});
+    const tributeTarget = tributeSelecting && !selectedTributeSlots.includes(i);
+    let html = cardHTML(c, {onField:true, ownerIdx:me, role:'my-card', slot:i, selected: selected, tributeTarget: tributeTarget});
     if(canReposition){
       html = html.replace('</div><div class="card__name">', '<button class="card__reposition-btn" data-role="reposition-btn" data-slot="'+i+'" title="Cambia posizione">🔄</button></div><div class="card__name">');
     }
@@ -4548,9 +4558,11 @@ function renderAll(){
     hand.innerHTML = '<div class="spectator-note">👁 Stai osservando in sola lettura.</div>';
   } else {
     hand.innerHTML = P[me].hand.map((c,i)=>{
-      const needsTribute = tributeCostFor(c.idx)>0;
-      return cardHTML(c, {ownerIdx:me, role:'hand-card', handIdx:i, selected: selectedHandIndex===i, small:true, dim:false}) 
-        .replace('<div class="card__name">', needsTribute ? '<div class="card__tribute-mark">T'+tributeCostFor(c.idx)+'</div><div class="card__name">' : '<div class="card__name">');
+      const tribCost = tributeCostFor(c.idx);
+      const needsTribute = tribCost>0;
+      const tribTitle = 'Evocazione Tributo: devi offrire ' + tribCost + ' tuoi mostri in campo per giocare questa carta';
+      return cardHTML(c, {ownerIdx:me, role:'hand-card', handIdx:i, selected: selectedHandIndex===i, small:true, dim:false})
+        .replace('<div class="card__name">', needsTribute ? '<div class="card__tribute-mark" title="'+tribTitle+'">T'+tribCost+'</div><div class="card__name">' : '<div class="card__name">');
     }).join('');
   }
 
@@ -4605,7 +4617,13 @@ function renderAll(){
   const tributeHint = document.getElementById('tribute-hint');
   if(tributeSelecting){
     tributeHint.style.display = 'block';
-    tributeHint.textContent = 'Offri in Tributo ' + pendingTributeNeeded + ' tuoi mostri (' + selectedTributeSlots.length + '/' + pendingTributeNeeded + ') per evocare questa carta.';
+    const stillNeeded = pendingTributeNeeded - selectedTributeSlots.length;
+    const available = P[me].field.filter((c,i)=>c && !selectedTributeSlots.includes(i)).length;
+    if(available < stillNeeded){
+      tributeHint.textContent = 'Non hai abbastanza mostri in campo: servono ' + pendingTributeNeeded + ' mostri da offrire in Tributo per evocare questa carta. Gioca prima altre carte, oppure scegline un\'altra.';
+    } else {
+      tributeHint.textContent = 'Tocca ' + stillNeeded + ' tuoi mostri in campo (con il bordo dorato pulsante) da offrire in Tributo (' + selectedTributeSlots.length + '/' + pendingTributeNeeded + ') per evocare questa carta.';
+    }
   } else {
     tributeHint.style.display = 'none';
   }
