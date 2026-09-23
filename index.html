@@ -4047,7 +4047,7 @@ let dragState = null;
 function wireDragDrop(){
   document.addEventListener('pointerdown', e=>{
     if(!state || uiLocked || (state.mode==='online' && !isMyOnlineTurn())) return;
-    if(!isMainPhase() || state.summonedThisTurn) return;
+    if(!isMainPhase()) return;
     const cardEl = e.target.closest('#hand [data-role="hand-card"]');
     if(!cardEl || e.target.closest('.card__info-btn')) return;
     dragState = { handIdx: parseInt(cardEl.getAttribute('data-hand'),10), startX:e.clientX, startY:e.clientY, ghostEl:null, active:false };
@@ -4095,7 +4095,7 @@ function wireDragDrop(){
 }
 
 function handleCardDrop(under, handIdx){
-  if(!under || !state || state.summonedThisTurn) return;
+  if(!under || !state) return;
   const P = state.players[state.current];
   const card = P.hand[handIdx];
   if(!card) return;
@@ -4838,7 +4838,7 @@ function wireEvents(){
     if(uiLocked || (state.mode==='online' && !isMyOnlineTurn())) return;
     if(!isMainPhase()) return;
     const el = e.target.closest('[data-role="hand-card"]');
-    if(!el || state.summonedThisTurn) return;
+    if(!el) return;
     const idx = parseInt(el.getAttribute('data-hand'),10);
     selectedHandIndex = (selectedHandIndex===idx) ? null : idx;
     selectedFieldSlot = null;
